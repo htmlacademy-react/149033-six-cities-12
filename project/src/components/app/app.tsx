@@ -1,12 +1,12 @@
 import MainScreen from '../../pages/main-screen/main-screen';
 
-type AppScreenProps = {
-  cardsCount: number;
-}
+const Setting = {
+  CardsCount: 5,
+} as const;
 
-function App({cardsCount}:AppScreenProps): JSX.Element {
+function App() {
   return (
-    <MainScreen cardsCount = {cardsCount}/>
+    <MainScreen cardsCount = {Setting.CardsCount}/>
   );
 }
 
