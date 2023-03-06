@@ -1,4 +1,5 @@
 import Card from '../../components/card/card';
+import { nanoid } from 'nanoid';
 
 type MainScreenProps = {
   cardsCount: number;
@@ -95,7 +96,7 @@ function MainScreen({cardsCount}:MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                { Array.from({ length: cardsCount }).map( () => <Card key = { Math.random()}/>) }
+                { Array.from({ length: cardsCount }).map( () => <Card key = { nanoid() }/>) }
               </div>
             </section>
             <div className="cities__right-section">
