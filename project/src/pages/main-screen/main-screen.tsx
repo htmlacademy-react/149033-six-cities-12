@@ -95,7 +95,7 @@ function MainScreen({cardsCount}:MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                { Array.from({ length: cardsCount }).map( () => <Card />) }
+                { Array.from({ length: cardsCount }).map( () => <Card key = { Math.random()}/>) }
               </div>
             </section>
             <div className="cities__right-section">
