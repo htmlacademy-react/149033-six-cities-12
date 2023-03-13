@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import { Offer } from '../../types/offers';
+const WIDTH_STARS = 20;
 type CardProps = {
   offer: Offer;
 }
@@ -13,7 +14,7 @@ function Card({offer}: CardProps): JSX.Element {
     type,
     id
   } = offer;
-  const calcRating = () => `${Math.round(rating) * 20}%`;
+  const calcRating = () => `${Math.round(rating) * WIDTH_STARS}%`;
   return (
     <article className="cities__card place-card">
       {isPremium ?
