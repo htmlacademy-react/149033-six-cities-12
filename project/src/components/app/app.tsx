@@ -6,19 +6,24 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
+import { Offers } from '../../types/offers';
 
 
 const Setting = {
-  CardsCount: 5,
+  CardsCount: 4,
 } as const;
 
-function App() {
+type AppProps = {
+  offers: Offers;
+};
+
+function App( {offers}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen cardsCount = {Setting.CardsCount}/>}
+          element={<MainScreen cardsCount = {Setting.CardsCount} offers = {offers} />}
         />
         <Route
           path={AppRoute.Login}

@@ -1,11 +1,12 @@
 import Card from '../../components/card/card';
-import { nanoid } from 'nanoid';
+import { Offers } from '../../types/offers';
 
 type MainScreenProps = {
   cardsCount: number;
+  offers: Offers;
 }
 
-function MainScreen({cardsCount}:MainScreenProps): JSX.Element {
+function MainScreen({cardsCount, offers}:MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -96,7 +97,7 @@ function MainScreen({cardsCount}:MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                { Array.from({ length: cardsCount }).map( () => <Card key = { nanoid() }/>) }
+                { offers.slice(0,cardsCount).map( (offer) => <Card key = { offer.id } offer={offer}/>) }
               </div>
             </section>
             <div className="cities__right-section">
