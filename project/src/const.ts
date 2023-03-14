@@ -10,3 +10,7 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum Setting {
+  CardsCount = 4,
+}

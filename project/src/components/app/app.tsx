@@ -8,11 +8,6 @@ import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
 import { Offers } from '../../types/offers';
 
-
-const Setting = {
-  CardsCount: 4,
-} as const;
-
 type AppProps = {
   offers: Offers;
 };
@@ -23,7 +18,7 @@ function App( {offers}: AppProps) {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen cardsCount = {Setting.CardsCount} offers = {offers} />}
+          element={<MainScreen offers = {offers} />}
         />
         <Route
           path={AppRoute.Login}

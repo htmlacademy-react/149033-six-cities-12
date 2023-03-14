@@ -1,12 +1,11 @@
-import Card from '../../components/card/card';
+import Offerlist from '../../components/offers-list/offers-list';
 import { Offers } from '../../types/offers';
 
 type MainScreenProps = {
-  cardsCount: number;
   offers: Offers;
 }
 
-function MainScreen({cardsCount, offers}:MainScreenProps): JSX.Element {
+function MainScreen({offers}:MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -96,9 +95,7 @@ function MainScreen({cardsCount, offers}:MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                { offers.slice(0,cardsCount).map( (offer) => <Card key = { offer.id } offer={offer}/>) }
-              </div>
+              <Offerlist offers ={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
