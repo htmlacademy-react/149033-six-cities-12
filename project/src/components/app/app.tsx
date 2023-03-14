@@ -18,7 +18,7 @@ function App( {offers}: AppProps) {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen offers = {offers} />}
+          element={<MainScreen offers = {offers}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -28,9 +28,9 @@ function App( {offers}: AppProps) {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen offers = {offers}/>
             </PrivateRoute>
           }
         />

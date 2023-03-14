@@ -4,7 +4,8 @@ const WIDTH_STARS = 20;
 type CardProps = {
   offer: Offer;
   cardMouseOverHandler: (offer: Offer) => void;
-}
+};
+
 function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
   const {
     price,

@@ -1,11 +1,24 @@
-function FavoritesScreen(): JSX.Element {
+import { Offers } from '../../types/offers';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+//import { nanoid } from 'nanoid';
+type FavoritesScreenProps = {
+  offers: Offers;
+};
+
+function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
+  const listCity = Array.from(new Set( offers.map( (item) => item.city.name) ));
+  // eslint-disable-next-line no-console
+  console.log(offers);
+  // eslint-disable-next-line no-console
+  console.log(listCity);
   return (
     <div className="page">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link className="header__logo-link" to={AppRoute.Main}>
                 <img
                   className="header__logo"
                   src="img/logo.svg"
@@ -13,7 +26,7 @@ function FavoritesScreen(): JSX.Element {
                   width={81}
                   height={41}
                 />
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
