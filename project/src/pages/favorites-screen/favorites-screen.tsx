@@ -11,10 +11,6 @@ type FavoritesScreenProps = {
 
 function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
   const listCity = Array.from(new Set( offers.map( (item) => item.city.name) ));
-  // eslint-disable-next-line no-console
-  console.log(offers);
-  // eslint-disable-next-line no-console
-  console.log(listCity);
   const calcRating = (rating: number) => `${Math.round(rating) * WIDTH_STARS}%`;
   return (
     <div className="page">
@@ -35,16 +31,16 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a
+                  <Link
                     className="header__nav-link header__nav-link--profile"
-                    href="#"
+                    to={AppRoute.Favorites}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">
                       Oliver.conner@gmail.com
                     </span>
                     <span className="header__favorite-count">3</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="header__nav-item">
                   <Link className="header__nav-link" to={AppRoute.Login}>
@@ -142,7 +138,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.Main}>
           <img
             className="footer__logo"
             src="img/logo.svg"
@@ -150,7 +146,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
             width={64}
             height={33}
           />
-        </a>
+        </Link>
       </footer>
     </div>
   );
