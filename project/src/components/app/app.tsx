@@ -28,15 +28,11 @@ function App( {offers}: AppProps) {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
               <FavoritesScreen offers = {offers}/>
             </PrivateRoute>
           }
-        />
-        <Route
-          path={AppRoute.Room}
-          element={<RoomScreen />}
         />
         <Route
           path={AppRoute.Room}
