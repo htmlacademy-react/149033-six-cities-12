@@ -6,10 +6,10 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 
 type AppProps = {
-  offers: Offers;
+  offers: Offer[];
 };
 
 function App( {offers}: AppProps) {
