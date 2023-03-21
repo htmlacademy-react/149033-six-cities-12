@@ -1,96 +1,29 @@
-import ReviewsForm from '../../components/reviews-form/reviews-form';
+import {useState} from 'react';
+import {useParams} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import Header from '../../components/header/header';
+import OfferImg from '../../components/offer-img/offer-img';
 
-function RoomScreen(): JSX.Element {
+import ReviewsForm from '../../components/reviews-form/reviews-form';
+import { AppRoute } from '../../const';
+import { Offer } from '../../types/offers';
+import { Review } from '../../types/review';
+
+type RoomScreenProps = {
+  offers: Offer[];
+  reviews: Review[];
+};
+
+function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const {id} = useParams();
+  const currentOffer = offers.find( (item) => item.id === Number(id)) as Offer;
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link className="header__logo-link" to={AppRoute.Main}>
-                <img
-                  className="header__logo"
-                  src="img/logo.svg"
-                  alt="6 cities logo"
-                  width={81}
-                  height={41}
-                />
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link
-                    className="header__nav-link header__nav-link--profile"
-                    to='/'
-                  >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
-                    </span>
-                    <span className="header__favorite-count">3</span>
-                  </Link>
-                </li>
-                <li className="header__nav-item">
-                  <Link className="header__nav-link" to='/'>
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="page__main page__main--property">
         <section className="property">
-          <div className="property__gallery-container container">
-            <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/room.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-01.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-02.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-03.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/studio-01.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-01.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-            </div>
-          </div>
+          <OfferImg offer={currentOffer}/>
           <div className="property__container container">
             <div className="property__wrapper">
               <div className="property__mark">
@@ -212,7 +145,7 @@ function RoomScreen(): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="property__map map" />
+          <section className="property__map map"></section>
         </section>
         <div className="container">
           <section className="near-places places">

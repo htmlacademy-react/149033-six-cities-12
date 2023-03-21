@@ -7,9 +7,3 @@ export type Review = {
   comment: string;
   date: string;
 };
-
-export type Reviews = Review[];
-
-export type AllReviews = {
-  [key: number]: Review[];
-};

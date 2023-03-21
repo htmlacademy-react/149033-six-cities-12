@@ -7,12 +7,15 @@ import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
 import { Offer } from '../../types/offers';
+import { Review } from '../../types/review';
+
 
 type AppProps = {
   offers: Offer[];
+  reviews: Review[];
 };
 
-function App( {offers}: AppProps) {
+function App( {offers, reviews}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -35,8 +38,13 @@ function App( {offers}: AppProps) {
           }
         />
         <Route
-          path={AppRoute.Room}
-          element={<RoomScreen />}
+          path={`${AppRoute.Room}:id`}
+          element={
+            <RoomScreen
+              offers={offers}
+              reviews={reviews}
+            />
+          }
         />
         <Route
           path="*"

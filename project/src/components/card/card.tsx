@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
+
 const WIDTH_STARS = 20;
 type CardProps = {
   offer: Offer;
@@ -24,7 +26,7 @@ function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
           <span>Premium</span>
         </div> : null }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${id}`}>
+        <Link to={`${AppRoute.Room}${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </Link>
       </div>
