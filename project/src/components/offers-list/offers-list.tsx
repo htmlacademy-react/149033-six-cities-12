@@ -1,10 +1,10 @@
 import Card from '../card/card';
-import { Offers, Offer } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { Setting } from '../../const';
 import { useState } from 'react';
 
 type OfferlistProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
 function Offerlist({offers}:OfferlistProps): JSX.Element {

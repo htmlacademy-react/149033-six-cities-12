@@ -1,7 +1,6 @@
 import Header from '../../components/header/header';
 import Offerlist from '../../components/offers-list/offers-list';
 import { Offer } from '../../types/offers';
-import { Helmet } from 'react-helmet-async';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 type MainScreenProps = {
@@ -11,9 +10,6 @@ type MainScreenProps = {
 function MainScreen({offers}:MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <Helmet>
-        <title>6 Cities - Main Page</title>
-      </Helmet>
       <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

@@ -1,4 +1,4 @@
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { nanoid } from 'nanoid';
@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 const WIDTH_STARS = 20;
 
 type FavoritesScreenProps = {
-  offers: Offers;
+  offers: Offer[];
 };
 
 function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
