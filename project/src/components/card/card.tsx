@@ -5,7 +5,7 @@ import { Offer } from '../../types/offers';
 const WIDTH_STARS = 20;
 type CardProps = {
   offer: Offer;
-  cardMouseOverHandler: (offer: Offer) => void;
+  cardMouseOverHandler: (offer: Offer | null) => void;
 };
 
 function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
@@ -20,7 +20,7 @@ function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
   } = offer;
   const calcRating = () => `${Math.round(rating) * WIDTH_STARS}%`;
   return (
-    <article className="cities__card place-card" onMouseOver={() => cardMouseOverHandler(offer)}>
+    <article className="cities__card place-card" onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>

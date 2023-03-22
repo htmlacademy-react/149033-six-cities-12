@@ -8,16 +8,16 @@ type OfferlistProps = {
 }
 
 function Offerlist({offers}:OfferlistProps): JSX.Element {
-
-  const [activeCard, setActiveCard] = useState(offers[0]);
-
-  const cardMouseOverHandler = (offer: Offer) => {
-    setActiveCard({...activeCard,...offer});
-  };
-
+  const [activeCard, setActiveCard] = useState<Offer | null>(null);
   return (
-    <div className="cities__places-list places__list tabs__content">
-      { offers.slice(0,Setting.CardsCount).map( (offer) => <Card key = { offer.id } offer={offer} cardMouseOverHandler = {cardMouseOverHandler}/>) }
+    <div className="cities__places-list places__list tabs__content" data-active-card={activeCard}>
+      { offers.slice(0,Setting.CardsCount).map((offer) => (
+        <Card
+          key = {offer.id}
+          offer = {offer}
+          cardMouseOverHandler = {setActiveCard}
+        />
+      )) }
     </div>
   );
 }
