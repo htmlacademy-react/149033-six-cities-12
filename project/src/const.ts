@@ -14,3 +14,12 @@ export enum AuthorizationStatus {
 export enum Setting {
   CardsCount = 4,
 }
+
+export enum RatingStars {
+  'terribly',
+  'badly',
+  'not bad',
+  'good',
+  'perfect'
+}
+
