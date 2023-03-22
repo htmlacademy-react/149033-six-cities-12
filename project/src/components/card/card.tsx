@@ -1,8 +1,9 @@
 import {Link} from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
+import { calcRating } from '../../utils';
+import Stars from '../stars/stars';
 
-const WIDTH_STARS = 20;
 type CardProps = {
   offer: Offer;
   cardMouseOverHandler: (offer: Offer | null) => void;
@@ -18,7 +19,7 @@ function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
     type,
     id
   } = offer;
-  const calcRating = () => `${Math.round(rating) * WIDTH_STARS}%`;
+
   return (
     <article className="cities__card place-card" onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
       {isPremium ?
@@ -45,8 +46,7 @@ function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: calcRating() }}></span>
-            <span className="visually-hidden">Rating</span>
+            <Stars rating={rating} />
           </div>
         </div>
         <h2 className="place-card__name">
