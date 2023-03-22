@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
-import { calcRating } from '../../utils';
 import Stars from '../stars/stars';
 
 type CardProps = {

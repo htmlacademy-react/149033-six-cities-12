@@ -1,34 +1,30 @@
 import {useState} from 'react';
 import { nanoid } from 'nanoid';
 import {useParams} from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import Card from '../../components/card/card';
 import Header from '../../components/header/header';
 import OfferImg from '../../components/offer-img/offer-img';
 import PropertyReviews from '../../components/property-reviews/property-reviews';
 import Stars from '../../components/stars/stars';
 
-//import ReviewsForm from '../../components/reviews-form/reviews-form';
-//import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
-import { calcRating, capitalize } from '../../utils';
+import { capitalize } from '../../utils';
 
 type RoomScreenProps = {
   offers: Offer[];
+  nearOffers: Offer[];
   reviews: Review[];
 };
 
-function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
+function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<Offer | null>(null);
   const {id} = useParams();
   const currentOffer = offers.find( (item) => item.id === Number(id)) as Offer;
-  const nearOffer = offers.filter( (item) => item.city.name === currentOffer.city.name).slice(1, 4);
-  console.log( nearOffer);
   return (
     <div className="page">
       <Header />
-      <main className="page__main page__main--property">
+      <main className="page__main page__main--property" >
         <section className="property">
           <OfferImg offer={currentOffer}/>
           <div className="property__container container">
@@ -111,8 +107,8 @@ function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
-              {nearOffer && nearOffer.map((item) => (
+            <div className="near-places__list places__list" data-active-card={activeCard}>
+              {nearOffers && nearOffers.map((item) => (
                 <Card
                   key = {item.id}
                   offer = {item}

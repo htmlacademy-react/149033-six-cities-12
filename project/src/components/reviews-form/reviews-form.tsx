@@ -3,17 +3,17 @@ import { useState } from 'react';
 function ReviewsForm():JSX.Element {
 
   const [comment, setComment] = useState('');
-  const ratingState = useState('');
+  const [rating, setRating] = useState('');
 
   const handleTextAreaChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(evt.target.value);
   };
   const handleFieldChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    ratingState[1](evt.target.value);
+    setRating(evt.target.value);
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" data-reiting-reviews={rating}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -122,7 +122,7 @@ function ReviewsForm():JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={false}
+          disabled
         >
           Submit
         </button>

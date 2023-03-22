@@ -12,10 +12,11 @@ import { Review } from '../../types/review';
 
 type AppProps = {
   offers: Offer[];
+  nearOffers: Offer[];
   reviews: Review[];
 };
 
-function App( {offers, reviews}: AppProps) {
+function App( {offers, nearOffers, reviews}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -42,6 +43,7 @@ function App( {offers, reviews}: AppProps) {
           element={
             <RoomScreen
               offers={offers}
+              nearOffers={nearOffers}
               reviews={reviews}
             />
           }

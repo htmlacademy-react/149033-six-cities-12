@@ -5183,3 +5183,5 @@ export const offers: Offer[] = [
     id: 92
   }
 ];
+
+export const nearOffers = offers.slice(1, 4);

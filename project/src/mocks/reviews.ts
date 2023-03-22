@@ -3,39 +3,39 @@ import {Review} from '../types/review';
 
 export const reviews: Review[] = [
   {
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    comment: 'Mock1 A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: 'Tue Mar 21 2023 19:21:59 GMT+0300 (Москва, стандартное время)',
     id: 1,
     rating: 4,
     user: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'https://i.pravatar.cc/54?img=3',
       id: 1,
       isPro: false,
-      name: 'Oliver.conner'
+      name: 'Oliver.conner1'
     }
   },
   {
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    comment: 'Mock2 A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: 'Tue Mar 19 2023 19:21:59 GMT+0300 (Москва, стандартное время)',
     id: 2,
     rating: 2,
     user: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'https://i.pravatar.cc/54?img=2',
       id: 1,
       isPro: false,
-      name: 'Oliver.conner'
+      name: 'Oliver.conner2'
     }
   },
   {
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    comment: 'Mock3 A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: 'Tue Mar 22 2023 19:21:59 GMT+0300 (Москва, стандартное время)',
     id: 3,
     rating: 1,
     user: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'https://i.pravatar.cc/54?img=6',
       id: 1,
       isPro: false,
-      name: 'Oliver.conner'
+      name: 'Oliver.conne3'
     }
   }
 ];
