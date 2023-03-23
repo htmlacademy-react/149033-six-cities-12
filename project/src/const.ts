@@ -22,3 +22,16 @@ export const RATING_STARS: string[] = [
   'good',
   'perfect'];
 
+export const CLASS_CARD = {
+  CITY: {
+    title: 'city',
+    with: 260,
+    height: 200
+  },
+  FAVORITES: {
+    title: 'favorites',
+    with: 150,
+    height: 110
+  },
+} as const;
+

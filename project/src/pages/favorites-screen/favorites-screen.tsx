@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import Header from '../../components/header/header';
 import Stars from '../../components/stars/stars';
 import Footer from '../../components/footer/footer';
+import PremiumMark from '../../components/premium-mark/premium-mark';
 
 type FavoritesScreenProps = {
   offers: Offer[];
@@ -41,11 +42,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
                       } = itemOffer;
                       return (
                         <article key={id} className="favorites__card place-card">
-                          {isPremium ?
-                            <div className="place-card__mark">
-                              <span>Premium</span>
-                            </div> : null}
-
+                          <PremiumMark isPremium={isPremium} />
                           <div className="favorites__image-wrapper place-card__image-wrapper">
                             <Link to={`${AppRoute.Room}${id}`}>
                               <img
@@ -85,7 +82,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
                               </div>
                             </div>
                             <h2 className="place-card__name">
-                              <Link to={`/offer/${id}`}>{title}</Link>
+                              <Link to={`${AppRoute.Room}/${id}`}>{title}</Link>
                             </h2>
                             <p className="place-card__type">{type}</p>
                           </div>

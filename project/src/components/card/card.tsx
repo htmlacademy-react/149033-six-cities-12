@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
+import PremiumMark from '../premium-mark/premium-mark';
 import Stars from '../stars/stars';
 
 type CardProps = {
@@ -21,10 +22,7 @@ function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
 
   return (
     <article className="cities__card place-card" onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
-      {isPremium ?
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div> : null }
+      <PremiumMark isPremium={isPremium} />
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room}${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
