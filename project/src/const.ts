@@ -15,11 +15,10 @@ export enum Setting {
   CardsCount = 4,
 }
 
-export enum RatingStars {
+export const RATING_STARS: string[] = [
   'terribly',
   'badly',
   'not bad',
   'good',
-  'perfect'
-}
+  'perfect'];
 
