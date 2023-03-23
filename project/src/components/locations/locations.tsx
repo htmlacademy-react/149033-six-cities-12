@@ -1,40 +1,51 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+type ItemCity = {
+  city: string;
+  active: boolean;
+ };
 
 function Locations():JSX.Element {
+  const listCity: ItemCity[] = [
+    {
+      city: 'Paris',
+      active: false,
+    },
+    {
+      city: 'Cologne',
+      active: false,
+    },
+    {
+      city: 'Brussels',
+      active: false,
+    },
+    {
+      city: 'Amsterdam',
+      active: true,
+    },
+    {
+      city: 'Hamburg',
+      active: false,
+    },
+    {
+      city: 'Dusseldorf',
+      active: false,
+    },
+  ];
+
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to={AppRoute.Main}>
-            <span>Paris</span>
-          </Link>
-        </li>
-        <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to={AppRoute.Main}>
-            <span>Cologne</span>
-          </Link>
-        </li>
-        <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to={AppRoute.Main}>
-            <span>Brussels</span>
-          </Link>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item tabs__item--active">
-            <span>Amsterdam</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to={AppRoute.Main}>
-            <span>Hamburg</span>
-          </Link>
-        </li>
-        <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to={AppRoute.Main}>
-            <span>Dusseldorf</span>
-          </Link>
-        </li>
+        {listCity.length && listCity.map((item) => (
+          <li key={item.city}>
+            <a
+              className={`locations__item-link tabs__item ${item.active ? 'tabs__item--active' : ''}`}
+              href = { item.active ? undefined : '#'}
+            >
+              {item.city}
+            </a>
+          </li>
+        )
+
+        )}
       </ul>
     </section>
   );
