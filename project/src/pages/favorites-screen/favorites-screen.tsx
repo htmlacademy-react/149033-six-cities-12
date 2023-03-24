@@ -1,7 +1,6 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 import { AppRoute, CLASS_CARD } from '../../const';
-import { nanoid } from 'nanoid';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import { useState } from 'react';
@@ -14,6 +13,8 @@ type FavoritesScreenProps = {
 function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<Offer | null>(null);
   const listCity = Array.from(new Set( offers.map( (item) => item.city.name) ));
+  // eslint-disable-next-line no-console
+  console.log(listCity);
   return (
     <div className="page">
       <Header />
@@ -23,7 +24,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               { listCity.map( (itemCity) => (
-                <li key={nanoid()} className="favorites__locations-items">
+                <li key={itemCity} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
                       <Link className="locations__item-link" to={AppRoute.Main}>

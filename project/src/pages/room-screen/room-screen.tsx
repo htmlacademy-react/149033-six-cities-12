@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import { nanoid } from 'nanoid';
 import {useParams} from 'react-router-dom';
 import Card from '../../components/card/card';
 import Header from '../../components/header/header';
