@@ -6,19 +6,23 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
+import { Offer } from '../../types/offers';
+import { Review } from '../../types/review';
 
 
-const Setting = {
-  CardsCount: 5,
-} as const;
+type AppProps = {
+  offers: Offer[];
+  nearOffers: Offer[];
+  reviews: Review[];
+};
 
-function App() {
+function App( {offers, nearOffers, reviews}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen cardsCount = {Setting.CardsCount}/>}
+          element={<MainScreen offers = {offers}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -28,19 +32,21 @@ function App() {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen offers = {offers}/>
             </PrivateRoute>
           }
         />
         <Route
-          path={AppRoute.Room}
-          element={<RoomScreen />}
-        />
-        <Route
-          path={AppRoute.Room}
-          element={<RoomScreen />}
+          path={`${AppRoute.Room}:id`}
+          element={
+            <RoomScreen
+              offers={offers}
+              nearOffers={nearOffers}
+              reviews={reviews}
+            />
+          }
         />
         <Route
           path="*"
