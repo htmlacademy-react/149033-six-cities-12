@@ -103,10 +103,10 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
             <div className="near-places__list places__list" data-active-card={activeCard}>
               {nearOffers && nearOffers.map((item) => (
                 <Card
-                  key = {item.id}
-                  offer = {item}
-                  classCard = {CLASS_CARD.CITY}
-                  cardMouseOverHandler = {setActiveCard}
+                  key={item.id}
+                  offer={item}
+                  classCard={CLASS_CARD.CITY}
+                  cardMouseOverHandler={setActiveCard}
                 />
               ))}
             </div>
