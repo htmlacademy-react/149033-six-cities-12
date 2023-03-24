@@ -1,10 +1,10 @@
 import { Offer } from '../../types/offers';
 
-type OfferImgProps = {
+type OfferGalleryProps = {
   offer: Offer;
 }
 
-function OfferImg({offer}:OfferImgProps):JSX.Element {
+function OfferGallery({offer}:OfferGalleryProps):JSX.Element {
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
@@ -18,4 +18,4 @@ function OfferImg({offer}:OfferImgProps):JSX.Element {
   );
 }
 
-export default OfferImg;
+export default OfferGallery;
