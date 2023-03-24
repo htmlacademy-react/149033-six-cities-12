@@ -13,8 +13,6 @@ type FavoritesScreenProps = {
 function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<Offer | null>(null);
   const listCity = Array.from(new Set( offers.map( (item) => item.city.name) ));
-  // eslint-disable-next-line no-console
-  console.log(listCity);
   return (
     <div className="page">
       <Header />
