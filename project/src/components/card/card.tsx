@@ -3,13 +3,19 @@ import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
 import PremiumMark from '../premium-mark/premium-mark';
 import Stars from '../stars/stars';
+type ClassCard = {
+  name: string;
+  width: number;
+  height: number;
+}
 
 type CardProps = {
   offer: Offer;
   cardMouseOverHandler: (offer: Offer | null) => void;
+  classCard: ClassCard;
 };
 
-function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
+function Card({offer, cardMouseOverHandler, classCard}: CardProps): JSX.Element {
   const {
     price,
     previewImage,
@@ -19,13 +25,17 @@ function Card({offer, cardMouseOverHandler}: CardProps): JSX.Element {
     type,
     id
   } = offer;
-
+  const {
+    name,
+    width,
+    height
+  } = classCard;
   return (
-    <article className="cities__card place-card" onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
+    <article className={`${name}__card place-card`} onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
       <PremiumMark isPremium={isPremium} />
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${name}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width={width} height={height} alt="Place image"/>
         </Link>
       </div>
       <div className="place-card__info">

@@ -24,14 +24,14 @@ export const RATING_STARS: string[] = [
 
 export const CLASS_CARD = {
   CITY: {
-    title: 'city',
-    with: 260,
+    name: 'cities',
+    width: 260,
     height: 200
   },
   FAVORITES: {
-    title: 'favorites',
-    with: 150,
+    name: 'favorites',
+    width: 150,
     height: 110
   },
-} as const;
+};
 

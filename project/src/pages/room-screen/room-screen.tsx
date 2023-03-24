@@ -10,6 +10,7 @@ import Stars from '../../components/stars/stars';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 import { capitalize } from '../../utils';
+import { CLASS_CARD } from '../../const';
 
 type RoomScreenProps = {
   offers: Offer[];
@@ -112,6 +113,7 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
                 <Card
                   key = {item.id}
                   offer = {item}
+                  classCard = {CLASS_CARD.CITY}
                   cardMouseOverHandler = {setActiveCard}
                 />
               ))}

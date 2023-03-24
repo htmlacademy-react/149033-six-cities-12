@@ -1,6 +1,6 @@
 import Card from '../card/card';
 import { Offer } from '../../types/offers';
-import { Setting } from '../../const';
+import { Setting, CLASS_CARD } from '../../const';
 import { useState } from 'react';
 
 type OfferlistProps = {
@@ -16,6 +16,7 @@ function Offerlist({offers}:OfferlistProps): JSX.Element {
           key = {offer.id}
           offer = {offer}
           cardMouseOverHandler = {setActiveCard}
+          classCard = {CLASS_CARD.CITY}
         />
       )) }
     </div>
