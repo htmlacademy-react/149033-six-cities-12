@@ -5,10 +5,10 @@ type PremiumMarkProps = {
 function PremiumMark({isPremium}: PremiumMarkProps): JSX.Element {
   return (
     <div>
-      {isPremium && (
+      {isPremium ? (
         <div className="place-card__mark">
           <span>Premium</span>
-        </div>)}
+        </div>) : null}
     </div>
   );}
 
