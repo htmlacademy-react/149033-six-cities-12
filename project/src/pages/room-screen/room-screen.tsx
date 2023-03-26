@@ -3,14 +3,15 @@ import {useParams} from 'react-router-dom';
 import Card from '../../components/card/card';
 import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
-import PropertyReviews from '../../components/property-reviews/property-reviews';
+import ReviewList from '../../components/review-list/review-list';
 import Stars from '../../components/stars/stars';
 
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 import { capitalize } from '../../utils';
-import { CLASS_CARD } from '../../const';
+import { CLASS_CARD, CLASS_MAP } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
+import Map from '../../components/map/map';
 
 type RoomScreenProps = {
   offers: Offer[];
@@ -90,10 +91,16 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
                   </p>
                 </div>
               </div>
-              <PropertyReviews reviews={reviews}/>
+              <ReviewList reviews={reviews}/>
             </div>
           </div>
-          <section className="property__map map"></section>
+
+          <Map
+            offers={nearOffers}
+            activeOfferId={currentOffer.id}
+            classMap={CLASS_MAP.ROOM_SCREEN}
+          />
+
         </section>
         <div className="container">
           <section className="near-places places">

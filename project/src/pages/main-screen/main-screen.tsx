@@ -5,13 +5,14 @@ import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import { useState } from 'react';
 import Map from '../../components/map/map';
+import { CLASS_MAP } from '../../const';
 
 type MainScreenProps = {
   offers: Offer[];
 }
 
 function MainScreen({offers}:MainScreenProps): JSX.Element {
-  const [activeOfferId] = useState(0);
+  const [activeOfferId] = useState(2);
 
   return (
     <div className="page page--gray page--main">
@@ -30,7 +31,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
               <Offerlist offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers} activeOfferId={activeOfferId}/>
+              <Map offers={offers} activeOfferId={activeOfferId} classMap={CLASS_MAP.MAIN_SCREEN}/>
             </div>
           </div>
         </div>
