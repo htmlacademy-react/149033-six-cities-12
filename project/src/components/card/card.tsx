@@ -30,6 +30,8 @@ function Card({offer, cardMouseOverHandler, classCard}: CardProps): JSX.Element 
     width,
     height
   } = classCard;
+  // eslint-disable-next-line no-console
+  console.log(offer);
   return (
     <article className={`${name}__card place-card`} onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
       <PremiumMark isPremium={isPremium} />

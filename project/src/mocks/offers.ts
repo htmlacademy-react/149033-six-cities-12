@@ -2,10 +2,10 @@ import { Offer } from '../types/offers';
 export const offers: Offer[] = [
   {
     city: {
-      name: 'Dusseldorf',
+      name: 'Amsterdam',
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
@@ -52,18 +52,18 @@ export const offers: Offer[] = [
     },
     description: 'Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.',
     location: {
-      latitude: 51.205402,
-      longitude: 6.7613140000000005,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     id: 1
   },
   {
     city: {
-      name: 'Dusseldorf',
+      name: 'Amsterdam',
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
@@ -106,18 +106,18 @@ export const offers: Offer[] = [
     },
     description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
     location: {
-      latitude: 51.236402000000005,
-      longitude: 6.784314,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     id: 2
   },
   {
     city: {
-      name: 'Dusseldorf',
+      name: 'Amsterdam',
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
@@ -164,18 +164,18 @@ export const offers: Offer[] = [
     },
     description: 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
     location: {
-      latitude: 51.248402000000006,
-      longitude: 6.763314,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 16
     },
     id: 3
   },
   {
     city: {
-      name: 'Brussels',
+      name: 'Amsterdam',
       location: {
-        latitude: 50.846557,
-        longitude: 4.351697,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
@@ -215,8 +215,8 @@ export const offers: Offer[] = [
     },
     description: 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
     location: {
-      latitude: 50.869557,
-      longitude: 4.332697,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 16
     },
     id: 4
