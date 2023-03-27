@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      offers = {offers}
+      offers={offers}
       nearOffers={nearOffers}
-      reviews = {reviews}
+      reviews={reviews}
     />
   </React.StrictMode>,
 );

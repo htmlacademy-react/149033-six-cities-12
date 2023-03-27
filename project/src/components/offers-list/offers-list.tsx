@@ -13,10 +13,10 @@ function Offerlist({offers}:OfferlistProps): JSX.Element {
     <div className="cities__places-list places__list tabs__content" data-active-card={activeCard}>
       { offers.slice(0,Setting.CardsCount).map((offer) => (
         <Card
-          key = {offer.id}
-          offer = {offer}
-          cardMouseOverHandler = {setActiveCard}
-          classCard = {CLASS_CARD.CITY}
+          key={offer.id}
+          offer={offer}
+          cardMouseOverHandler={setActiveCard}
+          classCard={CLASS_CARD.CITY}
         />
       )) }
     </div>

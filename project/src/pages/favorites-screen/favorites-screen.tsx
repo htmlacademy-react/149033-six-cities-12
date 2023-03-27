@@ -33,10 +33,10 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
                   <div className="favorites__places" data-active-card={activeCard}>
                     {offers.filter( (item) => item.city.name === itemCity).map( (itemOffer) => (
                       <Card
-                        key = {itemOffer.id}
-                        offer = {itemOffer}
-                        classCard = {CLASS_CARD.FAVORITES}
-                        cardMouseOverHandler = {setActiveCard}
+                        key={itemOffer.id}
+                        offer={itemOffer}
+                        classCard={CLASS_CARD.FAVORITES}
+                        cardMouseOverHandler={setActiveCard}
                       />
                     ))}
                   </div>
