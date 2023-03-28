@@ -9,7 +9,7 @@ import Stars from '../../components/stars/stars';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 import { capitalize } from '../../utils';
-import { CLASS_CARD, CLASS_MAP } from '../../const';
+import { CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
 
@@ -98,7 +98,6 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
           <Map
             offers={nearOffers}
             activeOfferId={currentOffer.id}
-            classMap={CLASS_MAP.ROOM_SCREEN}
           />
 
         </section>

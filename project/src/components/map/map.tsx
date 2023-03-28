@@ -4,7 +4,7 @@ import useMap from '../../hooks/useMap/useMap';
 import {Offer} from '../../types/offers';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';
-import cn from 'classnames';
+import { useLocation } from 'react-router-dom';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -22,13 +22,14 @@ const currentCustomIcon = new Icon({
 type MapProps = {
    offers: Offer[];
    activeOfferId: number;
-   classMap: string;
 }
 
-function Map({offers, activeOfferId, classMap}: MapProps): JSX.Element {
+function Map({offers, activeOfferId}: MapProps): JSX.Element {
 
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, offers[0]);
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (map) {
@@ -49,7 +50,7 @@ function Map({offers, activeOfferId, classMap}: MapProps): JSX.Element {
   }, [map, offers, activeOfferId]);
 
   return (
-    <section className={cn(classMap, 'map')} ref={mapRef}></section>
+    <section className={`${pathname === '/' ? 'cities__map' : 'property__map'} map`} ref={mapRef}></section>
   );
 }
 export default Map;
