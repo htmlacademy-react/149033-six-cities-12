@@ -11,7 +11,7 @@ type MainScreenProps = {
 }
 
 function MainScreen({offers}:MainScreenProps): JSX.Element {
-  const [activeOfferId] = useState(0);
+  const [activeOfferId] = useState(2);
 
   return (
     <div className="page page--gray page--main">
@@ -30,7 +30,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
               <Offerlist offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers} activeOfferId={activeOfferId}/>
+              <Map offers={offers} activeOfferId={activeOfferId} />
             </div>
           </div>
         </div>
