@@ -8,15 +8,16 @@ import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
+import { useAppSelector } from '../../hooks';
 
 
 type AppProps = {
-  offers: Offer[];
   nearOffers: Offer[];
   reviews: Review[];
 };
 
-function App( {offers, nearOffers, reviews}: AppProps) {
+function App( {nearOffers, reviews}: AppProps) {
+  const offers = useAppSelector((state)=>state.offers);
   return (
     <BrowserRouter>
       <Routes>
