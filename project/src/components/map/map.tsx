@@ -5,6 +5,7 @@ import {Offer} from '../../types/offers';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -20,18 +21,30 @@ const currentCustomIcon = new Icon({
 
 
 type MapProps = {
-   offers: Offer[];
+  offers: Offer[]
    activeOfferId: number;
 }
 
 function Map({offers, activeOfferId}: MapProps): JSX.Element {
+  //const offersCurr = useAppSelector((state) => state.offers);
 
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, offers[0]);
 
   const { pathname } = useLocation();
-
+  // eslint-disable-next-line no-console
+  console.log(offers);
   useEffect(() => {
+    // const markerGroup = leaflet.layerGroup().addTo(map);
+
+    // map.setView(
+    //   {
+    //     lat: location.latitude,
+    //     lng: location.longitude
+    //   },
+    //   location.zoom
+    // );
+
     if (map) {
       offers.forEach((offer: Offer) => {
         const marker = new Marker({
