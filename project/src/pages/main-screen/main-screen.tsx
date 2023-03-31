@@ -3,7 +3,6 @@ import Offerlist from '../../components/offers-list/offers-list';
 import { Offer } from '../../types/offers';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
-import { useState } from 'react';
 import Map from '../../components/map/map';
 import { useAppSelector } from '../../hooks';
 
@@ -12,10 +11,6 @@ type MainScreenProps = {
 }
 
 function MainScreen({offers}:MainScreenProps): JSX.Element {
-  const [selectedOffer] = useState<Offer | null>(
-    null
-  );
-
   const city = useAppSelector((state)=>state.city);
   return (
     <div className="page page--gray page--main">
@@ -34,7 +29,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
               <Offerlist offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <Map activeOfferId={selectedOffer?.id} />
+              <Map />
             </div>
           </div>
         </div>

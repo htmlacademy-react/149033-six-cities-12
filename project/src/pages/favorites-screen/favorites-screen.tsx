@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AppRoute, CLASS_CARD } from '../../const';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import { useState } from 'react';
 import Card from '../../components/card/card';
 
 type FavoritesScreenProps = {
@@ -11,7 +10,6 @@ type FavoritesScreenProps = {
 };
 
 function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<Offer | null>(null);
   const listCity = Array.from(new Set( offers.map( (item) => item.city.name) ));
   return (
     <div className="page">
@@ -30,13 +28,12 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
                       </Link>
                     </div>
                   </div>
-                  <div className="favorites__places" data-active-card={activeCard}>
+                  <div className="favorites__places">
                     {offers.filter( (item) => item.city.name === itemCity).map( (itemOffer) => (
                       <Card
                         key={itemOffer.id}
                         offer={itemOffer}
                         classCard={CLASS_CARD.FAVORITES}
-                        cardMouseOverHandler={setActiveCard}
                       />
                     ))}
                   </div>
