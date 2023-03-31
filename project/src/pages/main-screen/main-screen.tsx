@@ -34,7 +34,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
               <Offerlist offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers} activeOfferId={selectedOffer?.id} />
+              <Map activeOfferId={selectedOffer?.id} />
             </div>
           </div>
         </div>

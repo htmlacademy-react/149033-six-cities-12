@@ -22,21 +22,18 @@ const currentCustomIcon = new Icon({
 
 
 type MapProps = {
-  offers: Offer[];
    activeOfferId?: number;
 }
 
-function Map({offers, activeOfferId}: MapProps): JSX.Element {
-  //const offersCurr = useAppSelector((state) => state.offers);
+function Map({ activeOfferId}: MapProps): JSX.Element {
   const currentLocation = useAppSelector((state) => state.offers[0]?.city.location);
-  // eslint-disable-next-line no-console
-  console.log(currentLocation);
+  const offers = useAppSelector((state) => state.offers);
+
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, offers[0]);
 
   const { pathname } = useLocation();
-  // eslint-disable-next-line no-console
-  console.log(offers);
+
   useEffect(() => {
     if (map) {
       const markerGroup = leaflet.layerGroup().addTo(map);

@@ -96,7 +96,6 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
           </div>
 
           <Map
-            offers={nearOffers}
             activeOfferId={currentOffer.id}
           />
 
