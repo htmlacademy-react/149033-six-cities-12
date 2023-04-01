@@ -19,11 +19,13 @@ const currentCustomIcon = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
+type MapProps = {
+  activeOfferId: number;
+}
 
-function Map(): JSX.Element {
+function Map({activeOfferId}:MapProps): JSX.Element {
   const currentLocation = useAppSelector((state) => state.offers[0]?.city.location);
   const offers = useAppSelector((state) => state.offers);
-  const activeOfferId = useAppSelector((state) => state.selectedOfferId);
 
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, offers[0]);

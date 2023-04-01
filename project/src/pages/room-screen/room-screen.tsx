@@ -95,7 +95,7 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
             </div>
           </div>
 
-          <Map />
+          <Map activeOfferId={Number(id)}/>
 
         </section>
         <div className="container">
