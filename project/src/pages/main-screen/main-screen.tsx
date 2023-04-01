@@ -18,7 +18,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <Locations city={city} />
+          <Locations />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
