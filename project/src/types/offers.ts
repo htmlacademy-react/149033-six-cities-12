@@ -12,7 +12,7 @@ export type Host = {
 }
 
 export type City = {
-  name: string;
+  name: CityName;
   location: Location;
 }
 
@@ -35,3 +35,4 @@ export type Offer = {
   type: string;
 };
 
+export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
