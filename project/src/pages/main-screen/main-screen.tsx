@@ -13,7 +13,9 @@ type MainScreenProps = {
 
 function MainScreen({offers}:MainScreenProps): JSX.Element {
   const city = useAppSelector((state)=>state.city);
-  const [activeOfferId] = useState(0);
+  const [activeOfferId, setActiveOfferId] = useState(0);
+  const onMouseOverOffer = (id:number) => setActiveOfferId(id);
+  const onMouseLeaveOffer = () => setActiveOfferId(0);
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -28,7 +30,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length}&nbsp;places to stay in {city}</b>
               <Sort />
-              <Offerlist offers={offers} />
+              <Offerlist offers={offers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
             </section>
             <div className="cities__right-section">
               <Map activeOfferId={activeOfferId}/>

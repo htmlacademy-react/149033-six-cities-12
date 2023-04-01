@@ -11,6 +11,7 @@ import { capitalize } from '../../utils';
 import { CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
+import { useState } from 'react';
 const COUNT_NEAR_OFFERS = 3;
 
 type RoomScreenProps = {
@@ -24,6 +25,9 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
   const {id} = useParams();
   const currentOffer = offers.find( (item) => item.id === Number(id)) as Offer;
   const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
+  const [activeOfferId, setActiveOfferId] = useState(Number(id));
+  const onMouseLeaveOffer = () => setActiveOfferId(Number(id));
+  const onMouseOverOffer = (currentId:number) => setActiveOfferId(currentId);
   return (
     <div className="page">
       <Header />
@@ -95,7 +99,7 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
             </div>
           </div>
 
-          <Map activeOfferId={Number(id)}/>
+          <Map activeOfferId={activeOfferId}/>
 
         </section>
         <div className="container">
@@ -109,6 +113,8 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
                   key={item.id}
                   offer={item}
                   classCard={CLASS_CARD.CITY}
+                  onMouseLeaveOffer={onMouseLeaveOffer}
+                  onMouseOverOffer={onMouseOverOffer}
                 />
               ))}
             </div>

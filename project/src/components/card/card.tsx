@@ -1,7 +1,5 @@
 import {Link} from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { useAppDispatch } from '../../hooks';
-import { selectOffer } from '../../store/action';
 import { Offer } from '../../types/offers';
 import PremiumMark from '../premium-mark/premium-mark';
 import Stars from '../stars/stars';
@@ -14,9 +12,11 @@ type ClassCard = {
 type CardProps = {
   offer: Offer;
   classCard: ClassCard;
+  onMouseOverOffer?(id:number): void;
+  onMouseLeaveOffer?(): void;
 };
 
-function Card({offer, classCard}: CardProps): JSX.Element {
+function Card({offer, classCard, onMouseLeaveOffer = () => null, onMouseOverOffer = () => null}: CardProps): JSX.Element {
   const {
     price,
     previewImage,
@@ -31,9 +31,9 @@ function Card({offer, classCard}: CardProps): JSX.Element {
     width,
     height
   } = classCard;
-  const dispatch = useAppDispatch();
+
   return (
-    <article className={`${name}__card place-card`} onMouseOver={() => dispatch(selectOffer(id))} onMouseLeave={() => dispatch(selectOffer(null))} >
+    <article className={`${name}__card place-card`} onMouseOver={() => onMouseOverOffer(id)} onMouseLeave={() => onMouseLeaveOffer()} >
       <PremiumMark isPremium={isPremium} />
       <div className={`${name}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>
