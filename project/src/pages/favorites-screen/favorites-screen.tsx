@@ -29,7 +29,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {offers.filter( (item) => item.city.name === itemCity).map( (itemOffer) => (
+                    {offers.map( (itemOffer) => (
                       <Card
                         key={itemOffer.id}
                         offer={itemOffer}
