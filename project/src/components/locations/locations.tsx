@@ -42,7 +42,7 @@ function Locations():JSX.Element {
     <section className="locations container">
       <ul className="locations__list tabs__list" >
         {listCity.map((item) => (
-          <li key={item.city}>
+          <li key={item.city} className='locations__item'>
             <a
               className={cn('locations__item-link tabs__item', {'tabs__item--active': item.city === currentCity} )}
               onClick={(event) => {
