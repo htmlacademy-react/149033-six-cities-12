@@ -17,27 +17,21 @@ function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
         tabIndex={0}
         onClick = {() => setIsShowSort((option) => !option)}
       >
-        Popular
+        {sortingType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       { isShowSort &&
-      <ul className="places__options places__options--custom places__options--opened"
+      <ul className={cn('places__options','places__options--custom', {'places__options--opened': isShowSort})}
         onMouseLeave = {() => setIsShowSort(false)}
-        onClick={(evt) => {
-          const target = evt.target as HTMLElement;
-          if(target.tagName !== 'LI') {
-            return;
-          }
-          onSetSortingTypeClick(target.textContent as SORTS);
-          setIsShowSort((option) => !option);
+        onClick={() => {setIsShowSort((option) => !option);
         }}
       >
-        <li className={cn('places__option', {'places__option--active': sortingType === SORTS.Popular})} tabIndex={0}>Popular</li>
-        <li className={cn('places__option', {'places__option--active': sortingType === SORTS.LowToHigh})} tabIndex={0}>Price: low to high</li>
-        <li className={cn('places__option', {'places__option--active': sortingType === SORTS.HighToLow})} tabIndex={0}>Price: high to low</li>
-        <li className={cn('places__option', {'places__option--active': sortingType === SORTS.TopFirst})} tabIndex={0}>Top rated first</li>
+        {Object.entries(SORTS).map( (item) => (
+          <li key={item[0]} className={cn('places__option', {'places__option--active': sortingType === item[0]})} tabIndex={0} onClick={() => onSetSortingTypeClick(item[1])}>{item[1]}</li>
+        )
+        )}
       </ul>}
     </form>
   );
