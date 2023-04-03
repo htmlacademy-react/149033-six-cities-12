@@ -33,7 +33,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length}&nbsp;places to stay in {city}</b>
-              <Sort setSortingType={setSortingType} sortingType={sortingType}/>
+              <Sort onSetSortingTypeClick={setSortingType} sortingType={sortingType}/>
               <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
             </section>
             <div className="cities__right-section">

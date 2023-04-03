@@ -3,11 +3,11 @@ import cn from 'classnames';
 import { SORTS } from '../../const';
 
 type SortProps = {
-  setSortingType(value: string | null): void;
+  onSetSortingTypeClick(value: SORTS | null): void;
   sortingType: string | null;
 }
 
-function Sort({setSortingType, sortingType}: SortProps):JSX.Element {
+function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
   const [isShowSort, setIsShowSort] = useState(false);
   return (
     <form className="places__sorting" action="#" method="get">
@@ -30,7 +30,7 @@ function Sort({setSortingType, sortingType}: SortProps):JSX.Element {
           if(target.tagName !== 'LI') {
             return;
           }
-          setSortingType(target.textContent);
+          onSetSortingTypeClick(target.textContent as SORTS);
           setIsShowSort((option) => !option);
         }}
       >
