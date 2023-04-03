@@ -1,22 +1,23 @@
 import Card from '../card/card';
 import { Offer } from '../../types/offers';
 import { Setting, CLASS_CARD } from '../../const';
-import { useState } from 'react';
 
 type OfferlistProps = {
   offers: Offer[];
+  onMouseOverOffer?(id:number): void;
+  onMouseLeaveOffer?(): void;
 }
 
-function Offerlist({offers}:OfferlistProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<Offer | null>(null);
+function Offerlist({offers, onMouseOverOffer, onMouseLeaveOffer}:OfferlistProps): JSX.Element {
   return (
-    <div className="cities__places-list places__list tabs__content" data-active-card={activeCard}>
+    <div className="cities__places-list places__list tabs__content">
       { offers.slice(0,Setting.CardsCount).map((offer) => (
         <Card
           key={offer.id}
           offer={offer}
-          cardMouseOverHandler={setActiveCard}
           classCard={CLASS_CARD.CITY}
+          onMouseOverOffer={onMouseOverOffer}
+          onMouseLeaveOffer={onMouseLeaveOffer}
         />
       )) }
     </div>

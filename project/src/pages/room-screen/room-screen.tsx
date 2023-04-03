@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Card from '../../components/card/card';
 import Header from '../../components/header/header';
@@ -12,6 +11,8 @@ import { capitalize } from '../../utils';
 import { CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
+import { useState } from 'react';
+const COUNT_NEAR_OFFERS = 3;
 
 type RoomScreenProps = {
   offers: Offer[];
@@ -19,11 +20,14 @@ type RoomScreenProps = {
   reviews: Review[];
 };
 
+
 function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<Offer | null>(null);
   const {id} = useParams();
   const currentOffer = offers.find( (item) => item.id === Number(id)) as Offer;
   const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
+  const [activeOfferId, setActiveOfferId] = useState(Number(id));
+  const onMouseLeaveOffer = () => setActiveOfferId(Number(id));
+  const onMouseOverOffer = (currentId:number) => setActiveOfferId(currentId);
   return (
     <div className="page">
       <Header />
@@ -95,10 +99,7 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
             </div>
           </div>
 
-          <Map
-            offers={nearOffers}
-            activeOfferId={currentOffer.id}
-          />
+          <Map activeOfferId={activeOfferId}/>
 
         </section>
         <div className="container">
@@ -106,13 +107,14 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list" data-active-card={activeCard}>
-              {nearOffers && nearOffers.map((item) => (
+            <div className="near-places__list places__list">
+              {offers.slice(0, COUNT_NEAR_OFFERS).map((item) => (
                 <Card
                   key={item.id}
                   offer={item}
                   classCard={CLASS_CARD.CITY}
-                  cardMouseOverHandler={setActiveCard}
+                  onMouseLeaveOffer={onMouseLeaveOffer}
+                  onMouseOverOffer={onMouseOverOffer}
                 />
               ))}
             </div>

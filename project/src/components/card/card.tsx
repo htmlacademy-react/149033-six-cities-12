@@ -11,11 +11,12 @@ type ClassCard = {
 
 type CardProps = {
   offer: Offer;
-  cardMouseOverHandler: (offer: Offer | null) => void;
   classCard: ClassCard;
+  onMouseOverOffer?(id:number): void;
+  onMouseLeaveOffer?(): void;
 };
 
-function Card({offer, cardMouseOverHandler, classCard}: CardProps): JSX.Element {
+function Card({offer, classCard, onMouseLeaveOffer = () => null, onMouseOverOffer = () => null}: CardProps): JSX.Element {
   const {
     price,
     previewImage,
@@ -30,8 +31,9 @@ function Card({offer, cardMouseOverHandler, classCard}: CardProps): JSX.Element 
     width,
     height
   } = classCard;
+
   return (
-    <article className={`${name}__card place-card`} onMouseOver={() => cardMouseOverHandler(offer)} onMouseLeave={() => cardMouseOverHandler(null)} >
+    <article className={`${name}__card place-card`} onMouseOver={() => onMouseOverOffer(id)} onMouseLeave={() => onMouseLeaveOffer()} >
       <PremiumMark isPremium={isPremium} />
       <div className={`${name}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>

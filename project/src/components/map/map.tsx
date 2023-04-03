@@ -1,10 +1,12 @@
 import {useRef, useEffect} from 'react';
-import {Icon, Marker} from 'leaflet';
+import {Icon} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
 import {Offer} from '../../types/offers';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
+import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -17,14 +19,13 @@ const currentCustomIcon = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
-
-
 type MapProps = {
-   offers: Offer[];
-   activeOfferId: number;
+  activeOfferId: number;
 }
 
-function Map({offers, activeOfferId}: MapProps): JSX.Element {
+function Map({activeOfferId}:MapProps): JSX.Element {
+  const currentLocation = useAppSelector((state) => state.offers[0]?.city.location);
+  const offers = useAppSelector((state) => state.offers);
 
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, offers[0]);
@@ -33,19 +34,34 @@ function Map({offers, activeOfferId}: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      offers.forEach((offer: Offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
-        });
+      const markerGroup = leaflet.layerGroup().addTo(map);
+      map.setView(
+        {
+          lat: currentLocation.latitude,
+          lng: currentLocation.longitude
+        },
+        currentLocation.zoom
+      );
 
-        marker.setIcon(
-          activeOfferId !== undefined && offer.id === activeOfferId
-            ? currentCustomIcon
-            : defaultCustomIcon
-        )
-          .addTo(map);
+      offers.forEach((offer: Offer) => {
+        leaflet
+          .marker(
+            {
+              lat: offer.location.latitude,
+              lng: offer.location.longitude
+            },
+            {
+              icon: (activeOfferId && offer.id === activeOfferId)
+                ? currentCustomIcon
+                : defaultCustomIcon
+            }
+          )
+          .addTo(markerGroup);
       });
+
+      return () => {
+        markerGroup.clearLayers();
+      };
     }
   }, [map, offers, activeOfferId]);
 
