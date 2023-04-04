@@ -1,12 +1,16 @@
 const AUTH_TOKEN_KEY_NAME = 'app-cities-token';
 
-const getToken = () => localStorage.getItem(AUTH_TOKEN_KEY_NAME) ?? '';
+export type Token = string;
 
-const setToken = (token: string) => {
+export const getToken = (): Token => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY_NAME);
+  return token ?? '';
+};
+
+export const saveToken = (token: Token): void => {
   localStorage.setItem(AUTH_TOKEN_KEY_NAME, token);
 };
-const removeToken = () => {
+
+export const dropToken = (): void => {
   localStorage.removeItem(AUTH_TOKEN_KEY_NAME);
 };
-
-export { getToken, setToken, removeToken };
