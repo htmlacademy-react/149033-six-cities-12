@@ -4,7 +4,7 @@ import { SORTS } from '../../const';
 
 type SortProps = {
   onSetSortingTypeClick(value: SORTS | null): void;
-  sortingType: string | null;
+  sortingType: SORTS | null;
 }
 
 function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
@@ -28,8 +28,8 @@ function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
         onClick={() => {setIsShowSort((option) => !option);
         }}
       >
-        {Object.entries(SORTS).map( (item) => (
-          <li key={item[0]} className={cn('places__option', {'places__option--active': sortingType === item[0]})} tabIndex={0} onClick={() => onSetSortingTypeClick(item[1])}>{item[1]}</li>
+        {Object.entries(SORTS).map( ([key, label]) => (
+          <li key={key} className={cn('places__option', {'places__option--active': sortingType === label})} tabIndex={0} onClick={() => onSetSortingTypeClick(label)}>{label}</li>
         )
         )}
       </ul>}

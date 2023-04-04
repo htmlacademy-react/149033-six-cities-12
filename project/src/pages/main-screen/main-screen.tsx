@@ -18,7 +18,7 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState(0);
   const onMouseOverOffer = (id:number) => setActiveOfferId(id);
   const onMouseLeaveOffer = () => setActiveOfferId(0);
-  const [sortingType, setSortingType] = useState<string | null>(SORTS.Popular);
+  const [sortingType, setSortingType] = useState<SORTS | null>(SORTS.Popular);
   const sortedOffers = useSort(offers, sortingType);
   return (
     <div className="page page--gray page--main">
