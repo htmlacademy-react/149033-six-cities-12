@@ -12,6 +12,7 @@ type InitialState = {
   offers: Offer[];
   selectedOfferId: number | null;
   authorizationStatus: AuthorizationStatus;
+  isOffersDataLoading: boolean;
 };
 
 
@@ -20,6 +21,7 @@ const initialState: InitialState = {
   offers: offers.filter((offer) => offer.city.name === START_CITY),
   selectedOfferId: null,
   authorizationStatus: AuthorizationStatus.Unknown,
+  isOffersDataLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {

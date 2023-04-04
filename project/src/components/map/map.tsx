@@ -26,7 +26,8 @@ type MapProps = {
 function Map({activeOfferId}:MapProps): JSX.Element {
   const currentLocation = useAppSelector((state) => state.offers[0]?.city.location);
   const offers = useAppSelector((state) => state.offers);
-
+  // eslint-disable-next-line no-console
+  console.log(offers);
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, offers[0]);
 

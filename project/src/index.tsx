@@ -5,6 +5,10 @@ import { nearOffers} from './mocks/offers';
 import { reviews } from './mocks/reviews';
 import {Provider} from 'react-redux';
 import {store} from './store/index';
+import { checkAuthAction, fetchOfferAction } from './store/api-actions';
+
+store.dispatch(fetchOfferAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
