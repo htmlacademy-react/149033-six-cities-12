@@ -8,6 +8,7 @@ import { useAppSelector } from '../../hooks';
 import { useState } from 'react';
 import { SORTS } from '../../const';
 import { useSort } from '../../hooks/useSort/useSort';
+import { getOffersByCity } from '../../utils';
 
 type MainScreenProps = {
   offers: Offer[];
@@ -19,7 +20,8 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
   const onMouseOverOffer = (id:number) => setActiveOfferId(id);
   const onMouseLeaveOffer = () => setActiveOfferId(0);
   const [sortingType, setSortingType] = useState<SORTS | null>(SORTS.Popular);
-  const sortedOffers = useSort(offers, sortingType);
+  const offersByCity = getOffersByCity(offers, city);
+  const sortedOffers = useSort(offersByCity, sortingType);
   return (
     <div className="page page--gray page--main">
       <Header />

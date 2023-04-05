@@ -7,6 +7,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
+import { getOffersByCity } from '../../utils';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -19,13 +20,20 @@ const currentCustomIcon = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
+
+const DEFAULT_COORDINATE_MAP = {
+  latitude: 48.85661,
+  longitude: 2.351499,
+  zoom: 13
+};
+
 type MapProps = {
   activeOfferId: number;
 }
 
 function Map({activeOfferId}:MapProps): JSX.Element {
-  const currentLocation = useAppSelector((state) => state.offers[0]?.city.location);
   const offers = useAppSelector((state) => state.offers);
+  const currentLocation = useAppSelector((state) => state.offers.length ? getOffersByCity(state.offers, state.city)[0].city.location : DEFAULT_COORDINATE_MAP);
   // eslint-disable-next-line no-console
   console.log(offers);
   const mapRef = useRef<HTMLElement | null>(null);
