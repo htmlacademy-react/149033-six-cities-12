@@ -2,7 +2,7 @@ import {useRef, useEffect} from 'react';
 import {Icon} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
 import {Offer} from '../../types/offers';
-import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
+import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT, DEFFAULT_OFFER, DEFFAULT_COORDINATE_MAP} from '../../const';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
@@ -21,43 +21,6 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-const DEFAULT_COORDINATE_MAP = {
-  latitude: 48.85661,
-  longitude: 2.351499,
-  zoom: 13
-};
-const DEFAULT_OFFER = {
-  city: {
-    name: '',
-    location: DEFAULT_COORDINATE_MAP
-  },
-  previewImage: '',
-  images: [],
-  title: '',
-  isFavorite: false,
-  isPremium: false,
-  rating: 0,
-  type: '',
-  bedrooms: 0,
-  maxAdults: 0,
-  price: 0,
-  goods: [],
-  host: {
-    id: 0,
-    name: '',
-    isPro: false,
-    avatarUrl: ''
-  },
-  description: '',
-  location: {
-    latitude: 0,
-    longitude: 0,
-    zoom: 0
-  },
-  id: 0
-};
-
-
 type MapProps = {
   activeOfferId: number;
 }
@@ -67,7 +30,7 @@ function Map({activeOfferId}:MapProps): JSX.Element {
   const offers = useAppSelector((state) => getOffersByCity(state.offers, city));
   //const currentLocation = useAppSelector((state) => state.offers.length ? getOffersByCity(state.offers, state.city)[0].city.location : DEFAULT_COORDINATE_MAP);
   const mapRef = useRef<HTMLElement | null>(null);
-  const map = useMap(mapRef, DEFAULT_OFFER as Offer);
+  const map = useMap(mapRef, DEFFAULT_OFFER as Offer);
 
   const { pathname } = useLocation();
 
@@ -75,7 +38,7 @@ function Map({activeOfferId}:MapProps): JSX.Element {
     if (map) {
       const mapCity = offers.length
         ? offers[0].city.location
-        : DEFAULT_COORDINATE_MAP;
+        : DEFFAULT_COORDINATE_MAP;
 
       map.setView(
         {
