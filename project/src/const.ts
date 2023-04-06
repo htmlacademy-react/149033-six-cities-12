@@ -92,3 +92,5 @@ export const DEFFAULT_OFFER = {
   },
   id: 0
 };
+
+export const TIMEOUT_SHOW_ERROR = 2000;
