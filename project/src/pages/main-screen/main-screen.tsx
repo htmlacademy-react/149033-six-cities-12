@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { SORTS } from '../../const';
 import { useSort } from '../../hooks/useSort/useSort';
 import { getOffersByCity } from '../../utils';
+import Loader from '../../components/loader/loader';
 
 type MainScreenProps = {
   offers: Offer[];
@@ -36,7 +37,11 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offersByCity.length}&nbsp;places to stay in {city}</b>
               <Sort onSetSortingTypeClick={setSortingType} sortingType={sortingType}/>
-              <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
+              {
+                !offers.length
+                  ? <Loader />
+                  : <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
+              }
             </section>
             <div className="cities__right-section">
               <Map activeOfferId={activeOfferId}/>
