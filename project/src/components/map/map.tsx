@@ -28,7 +28,6 @@ type MapProps = {
 function Map({activeOfferId}:MapProps): JSX.Element {
   const city = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => getOffersByCity(state.offers, city));
-  //const currentLocation = useAppSelector((state) => state.offers.length ? getOffersByCity(state.offers, state.city)[0].city.location : DEFAULT_COORDINATE_MAP);
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, DEFFAULT_OFFER as Offer);
 

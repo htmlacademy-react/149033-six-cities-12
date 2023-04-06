@@ -1,7 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Offer } from '../types/offers';
-//import { offers } from '../mocks/offers';
-import { changeCity, updateOfferList, selectOffer, loadOffers, requireAuthorization, setError} from './action';
+import { changeCity, selectOffer, loadOffers, requireAuthorization, setError} from './action';
 import { CityName } from '../types/offers';
 import { AuthorizationStatus } from '../const';
 
@@ -31,9 +30,6 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeCity, (state, {payload}) => {
       state.city = payload;
     })
-    // .addCase(updateOfferList, (state) => {
-    //   state.offers = offers.filter((offer)=> offer.city.name === state.city);
-    // })
     .addCase(selectOffer, (state, {payload}) => {
       state.selectedOfferId = payload;
     })

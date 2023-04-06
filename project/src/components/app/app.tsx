@@ -6,25 +6,14 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
-import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 import { useAppSelector } from '../../hooks';
-import LoadingScreen from '../../pages/loading-screen/loading-screen';
-
 
 type AppProps = {
   reviews: Review[];
 };
 
 function App( {reviews}: AppProps) {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  // eslint-disable-next-line no-console, indent
-  // if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
-  //   return (
-  //     <LoadingScreen />
-  //   );
-  // }
   const offers = useAppSelector((state)=>state.offers);
   return (
     <BrowserRouter>
