@@ -13,15 +13,13 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 
 type AppProps = {
-  nearOffers: Offer[];
   reviews: Review[];
 };
 
-function App( {nearOffers, reviews}: AppProps) {
+function App( {reviews}: AppProps) {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   // eslint-disable-next-line no-console, indent
-console.log(authorizationStatus, isOffersDataLoading);
   // if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
   //   return (
   //     <LoadingScreen />
@@ -54,7 +52,6 @@ console.log(authorizationStatus, isOffersDataLoading);
           element={
             <RoomScreen
               offers={offers}
-              nearOffers={nearOffers}
               reviews={reviews}
             />
           }

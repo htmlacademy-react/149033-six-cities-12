@@ -17,7 +17,8 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setOffersDataLoadingStatus(true));
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
-    dispatch(setOffersDataLoadingStatus(false));
+    // eslint-disable-next-line no-console
+    //dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
   },
 );

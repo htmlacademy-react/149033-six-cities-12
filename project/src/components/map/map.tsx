@@ -26,31 +26,70 @@ const DEFAULT_COORDINATE_MAP = {
   longitude: 2.351499,
   zoom: 13
 };
+const DEFAULT_OFFER = {
+  city: {
+    name: '',
+    location: DEFAULT_COORDINATE_MAP
+  },
+  previewImage: '',
+  images: [],
+  title: '',
+  isFavorite: false,
+  isPremium: false,
+  rating: 0,
+  type: '',
+  bedrooms: 0,
+  maxAdults: 0,
+  price: 0,
+  goods: [],
+  host: {
+    id: 0,
+    name: '',
+    isPro: false,
+    avatarUrl: ''
+  },
+  description: '',
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0
+  },
+  id: 0
+};
+
 
 type MapProps = {
   activeOfferId: number;
 }
 
 function Map({activeOfferId}:MapProps): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
-  const currentLocation = useAppSelector((state) => state.offers.length ? getOffersByCity(state.offers, state.city)[0].city.location : DEFAULT_COORDINATE_MAP);
-  // eslint-disable-next-line no-console
-  console.log(offers);
+  const city = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => getOffersByCity(state.offers, city));
+  //const currentLocation = useAppSelector((state) => state.offers.length ? getOffersByCity(state.offers, state.city)[0].city.location : DEFAULT_COORDINATE_MAP);
   const mapRef = useRef<HTMLElement | null>(null);
-  const map = useMap(mapRef, offers[0]);
+  const map = useMap(mapRef, DEFAULT_OFFER as Offer);
 
   const { pathname } = useLocation();
 
   useEffect(() => {
     if (map) {
-      const markerGroup = leaflet.layerGroup().addTo(map);
+      const mapCity = offers.length
+        ? offers[0].city.location
+        : DEFAULT_COORDINATE_MAP;
+
       map.setView(
         {
-          lat: currentLocation.latitude,
-          lng: currentLocation.longitude
+          lat: mapCity.latitude,
+          lng: mapCity.longitude
         },
-        currentLocation.zoom
+        mapCity.zoom
       );
+    }
+  }, [map, offers]);
+
+  useEffect(() => {
+    if (map) {
+      const markerGroup = leaflet.layerGroup().addTo(map);
 
       offers.forEach((offer: Offer) => {
         leaflet

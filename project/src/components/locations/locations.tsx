@@ -49,7 +49,7 @@ function Locations():JSX.Element {
                 event.preventDefault();
 
                 dispatch(changeCity(item.city as CityName));
-                dispatch(updateOfferList());
+                // dispatch(updateOfferList());
               }}
             >
               {item.city}

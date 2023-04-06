@@ -7,22 +7,23 @@ import Stars from '../../components/stars/stars';
 
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
-import { capitalize } from '../../utils';
+import { capitalize, getOffersByCity } from '../../utils';
 import { CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
 import { useState } from 'react';
+import { useAppSelector } from '../../hooks';
 const COUNT_NEAR_OFFERS = 3;
 
 type RoomScreenProps = {
   offers: Offer[];
-  nearOffers: Offer[];
   reviews: Review[];
 };
 
 
-function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element {
+function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
   const {id} = useParams();
+  const currentCity = useAppSelector((state) => state.city);
   const currentOffer = offers.find( (item) => item.id === Number(id)) as Offer;
   const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
   const [activeOfferId, setActiveOfferId] = useState(Number(id));
@@ -108,7 +109,7 @@ function RoomScreen({offers, nearOffers, reviews}: RoomScreenProps): JSX.Element
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {offers.slice(0, COUNT_NEAR_OFFERS).map((item) => (
+              {getOffersByCity(offers, currentCity).slice(0, COUNT_NEAR_OFFERS).map((item) => (
                 <Card
                   key={item.id}
                   offer={item}
