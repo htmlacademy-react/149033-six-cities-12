@@ -11,10 +11,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum Setting {
-  CardsCount = 4,
-}
-
 export const RATING_STARS: string[] = [
   'terribly',
   'badly',
