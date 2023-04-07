@@ -1,4 +1,4 @@
-const AUTH_TOKEN_KEY_NAME = 'app-cities-token';
+const AUTH_TOKEN_KEY_NAME = 'my-app-cities-token-7XnqxdYZ4CpykDqUYZ';
 
 export type Token = string;
 
