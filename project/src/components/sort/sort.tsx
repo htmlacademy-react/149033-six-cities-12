@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { SORTS } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeSort } from '../../store/action';
 
-type SortProps = {
-  onSetSortingTypeClick(value: SORTS | null): void;
-  sortingType: SORTS | null;
-}
 
-function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
+function Sort():JSX.Element {
   const [isShowSort, setIsShowSort] = useState(false);
+  const sortType = useAppSelector((state) => state.sortType);
+  const dispatch = useAppDispatch();
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -17,7 +17,7 @@ function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
         tabIndex={0}
         onClick = {() => setIsShowSort((option) => !option)}
       >
-        {sortingType}
+        {sortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -29,7 +29,7 @@ function Sort({onSetSortingTypeClick, sortingType}: SortProps):JSX.Element {
         }}
       >
         {Object.entries(SORTS).map( ([key, label]) => (
-          <li key={key} className={cn('places__option', {'places__option--active': sortingType === label})} tabIndex={0} onClick={() => onSetSortingTypeClick(label)}>{label}</li>
+          <li key={key} className={cn('places__option', {'places__option--active': sortType === label})} tabIndex={0} onClick={() => dispatch(changeSort(label))}>{label}</li>
         )
         )}
       </ul>}
