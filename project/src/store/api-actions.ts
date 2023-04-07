@@ -32,8 +32,9 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
       dispatch(loadOffers(data));
       dispatch(setOffersDataLoadingStatus(false));
     } catch {
-      dispatch(setOffersDataLoadingStatus(false));
       dispatch(setError('Ошибка'));
+    } finally {
+      dispatch(setOffersDataLoadingStatus(false));
     }
   },
 );
