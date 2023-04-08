@@ -2,11 +2,12 @@ import {useRef, useEffect} from 'react';
 import {Icon} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
 import {Offer} from '../../types/offers';
-import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
+import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT, DEFFAULT_OFFER, DEFFAULT_COORDINATE_MAP} from '../../const';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
+import { getOffersByCity } from '../../utils';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -19,29 +20,38 @@ const currentCustomIcon = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
+
 type MapProps = {
   activeOfferId: number;
 }
 
 function Map({activeOfferId}:MapProps): JSX.Element {
-  const currentLocation = useAppSelector((state) => state.offers[0]?.city.location);
-  const offers = useAppSelector((state) => state.offers);
-
+  const city = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => getOffersByCity(state.offers, city));
   const mapRef = useRef<HTMLElement | null>(null);
-  const map = useMap(mapRef, offers[0]);
+  const map = useMap(mapRef, DEFFAULT_OFFER as Offer);
 
   const { pathname } = useLocation();
 
   useEffect(() => {
     if (map) {
-      const markerGroup = leaflet.layerGroup().addTo(map);
+      const mapCity = offers.length
+        ? offers[0].city.location
+        : DEFFAULT_COORDINATE_MAP;
+
       map.setView(
         {
-          lat: currentLocation.latitude,
-          lng: currentLocation.longitude
+          lat: mapCity.latitude,
+          lng: mapCity.longitude
         },
-        currentLocation.zoom
+        mapCity.zoom
       );
+    }
+  }, [map, offers]);
+
+  useEffect(() => {
+    if (map) {
+      const markerGroup = leaflet.layerGroup().addTo(map);
 
       offers.forEach((offer: Offer) => {
         leaflet

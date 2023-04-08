@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {changeCity, updateOfferList} from '../../store/action';
+import {changeCity} from '../../store/action';
 import { CityName } from '../../types/offers';
 
 type ItemCity = {
@@ -49,7 +49,6 @@ function Locations():JSX.Element {
                 event.preventDefault();
 
                 dispatch(changeCity(item.city as CityName));
-                dispatch(updateOfferList());
               }}
             >
               {item.city}

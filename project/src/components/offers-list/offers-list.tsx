@@ -1,6 +1,6 @@
 import Card from '../card/card';
 import { Offer } from '../../types/offers';
-import { Setting, CLASS_CARD } from '../../const';
+import { CLASS_CARD } from '../../const';
 
 type OfferlistProps = {
   offers: Offer[];
@@ -11,7 +11,7 @@ type OfferlistProps = {
 function Offerlist({offers, onMouseOverOffer, onMouseLeaveOffer}:OfferlistProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      { offers.slice(0,Setting.CardsCount).map((offer) => (
+      { offers.map((offer) => (
         <Card
           key={offer.id}
           offer={offer}

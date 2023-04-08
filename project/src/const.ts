@@ -11,10 +11,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum Setting {
-  CardsCount = 4,
-}
-
 export const RATING_STARS: string[] = [
   'terribly',
   'badly',
@@ -50,3 +46,47 @@ export enum SORTS {
   HighToLow = 'Price: high to low',
   TopFirst = 'Top rated first'
 }
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout'
+}
+
+export const DEFFAULT_COORDINATE_MAP = {
+  latitude: 48.85661,
+  longitude: 2.351499,
+  zoom: 13
+};
+export const DEFFAULT_OFFER = {
+  city: {
+    name: '',
+    location: DEFFAULT_COORDINATE_MAP
+  },
+  previewImage: '',
+  images: [],
+  title: '',
+  isFavorite: false,
+  isPremium: false,
+  rating: 0,
+  type: '',
+  bedrooms: 0,
+  maxAdults: 0,
+  price: 0,
+  goods: [],
+  host: {
+    id: 0,
+    name: '',
+    isPro: false,
+    avatarUrl: ''
+  },
+  description: '',
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0
+  },
+  id: 0
+};
+
+export const TIMEOUT_SHOW_ERROR = 2000;

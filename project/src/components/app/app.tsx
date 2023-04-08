@@ -6,17 +6,14 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
-import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 import { useAppSelector } from '../../hooks';
 
-
 type AppProps = {
-  nearOffers: Offer[];
   reviews: Review[];
 };
 
-function App( {nearOffers, reviews}: AppProps) {
+function App( {reviews}: AppProps) {
   const offers = useAppSelector((state)=>state.offers);
   return (
     <BrowserRouter>
@@ -44,7 +41,6 @@ function App( {nearOffers, reviews}: AppProps) {
           element={
             <RoomScreen
               offers={offers}
-              nearOffers={nearOffers}
               reviews={reviews}
             />
           }
