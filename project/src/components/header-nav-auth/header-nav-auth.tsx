@@ -20,7 +20,7 @@ function HeaderNavAuth():JSX.Element {
       </li>
       <li className="header__nav-item">
         <Link className="header__nav-link"
-          to={AppRoute.Login}
+          to={AppRoute.Favorites}
           onClick={(event: MouseEvent) => {
             event.preventDefault();
             dispatch(logoutAction());
