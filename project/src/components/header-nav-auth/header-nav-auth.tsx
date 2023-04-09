@@ -8,6 +8,8 @@ import { logoutAction } from '../../store/api-actions';
 function HeaderNavAuth():JSX.Element {
   const userData = useAppSelector((state) => state.userData);
   const dispatch = useAppDispatch();
+  // eslint-disable-next-line no-console
+  console.log(userData);
   return (
     <ul className="header__nav-list">
       <li className="header__nav-item user">

@@ -1,4 +1,4 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import { AppRoute } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
@@ -8,6 +8,8 @@ import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
 import { Review } from '../../types/review';
 import { useAppSelector } from '../../hooks';
+import browserHistory from '../../browser-history';
+import HistoryRouter from '../history-router/history-router';
 
 type AppProps = {
   reviews: Review[];
@@ -17,7 +19,7 @@ function App( {reviews}: AppProps) {
   const offers = useAppSelector((state)=>state.offers);
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -49,7 +51,7 @@ function App( {reviews}: AppProps) {
           element={<Page404 />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
 
   );
 }

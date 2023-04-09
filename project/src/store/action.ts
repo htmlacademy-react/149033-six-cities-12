@@ -27,4 +27,4 @@ export const changeSort = createAction('sort/changeSort',(sort: SORTS) => ({payl
 
 export const loadUserData = createAction('user/loadUserData',(userData: UserData) => ({payload: userData}));
 
-export const redirectToRoute = createAction<AppRoute>('appRout/redirectToRoute');
+export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
