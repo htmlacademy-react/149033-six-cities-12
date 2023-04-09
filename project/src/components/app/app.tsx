@@ -1,5 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
@@ -15,6 +15,7 @@ type AppProps = {
 
 function App( {reviews}: AppProps) {
   const offers = useAppSelector((state)=>state.offers);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,9 +30,7 @@ function App( {reviews}: AppProps) {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <FavoritesScreen offers = {offers}/>
             </PrivateRoute>
           }

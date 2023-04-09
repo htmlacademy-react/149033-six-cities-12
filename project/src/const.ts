@@ -90,3 +90,5 @@ export const DEFFAULT_OFFER = {
 };
 
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const DEFFAULT_IMG_AVATAR = './img/avatar.svg';
