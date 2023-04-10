@@ -2,9 +2,9 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Offer} from '../types/offers';
-import {loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus} from './action';
+import {loadOffers, loadUserData, redirectToRoute, requireAuthorization, setError, setOffersDataLoadingStatus} from './action';
 import {saveToken, dropToken} from '../services/token';
-import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
+import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {store} from './';
@@ -24,7 +24,7 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchQuestions',
+  'data/fetchOffer',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setOffersDataLoadingStatus(true));
     try {
@@ -47,8 +47,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(APIRoute.Login);
+      const {data} = await api.get<UserData>(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(loadUserData(data));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
@@ -62,9 +63,11 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(loadUserData(data));
+    dispatch(redirectToRoute(AppRoute.Main));
   },
 );
 

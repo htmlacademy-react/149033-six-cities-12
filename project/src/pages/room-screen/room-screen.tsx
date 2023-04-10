@@ -13,6 +13,7 @@ import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
+import HeaderNav from '../../components/header-nav/header-nav';
 const COUNT_NEAR_OFFERS = 3;
 
 type RoomScreenProps = {
@@ -31,7 +32,9 @@ function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
   const onMouseOverOffer = (currentId:number) => setActiveOfferId(currentId);
   return (
     <div className="page">
-      <Header />
+      <Header>
+        <HeaderNav />
+      </Header>
       <main className="page__main page__main--property" >
         <section className="property">
           <OfferGallery offer={currentOffer}/>

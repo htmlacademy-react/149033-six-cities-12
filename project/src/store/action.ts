@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import { CityName, Offer } from '../types/offers';
-import { AuthorizationStatus, SORTS } from '../const';
+import { AppRoute, AuthorizationStatus, SORTS } from '../const';
+import { UserData } from '../types/user-data';
 
 export const changeCity = createAction(
   'city/changeCity',
@@ -23,3 +24,7 @@ export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersD
 export const setError = createAction<string | null>('data/setError');
 
 export const changeSort = createAction('sort/changeSort',(sort: SORTS) => ({payload: sort}));
+
+export const loadUserData = createAction('user/loadUserData',(userData: UserData) => ({payload: userData}));
+
+export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');

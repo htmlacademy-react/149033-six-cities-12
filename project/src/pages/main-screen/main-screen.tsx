@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useSort } from '../../hooks/useSort/useSort';
 import { getOffersByCity } from '../../utils';
 import Loader from '../../components/loader/loader';
+import HeaderNav from '../../components/header-nav/header-nav';
 
 type MainScreenProps = {
   offers: Offer[];
@@ -26,7 +27,9 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
   const sortedOffers = useSort(offersByCity, sortType);
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <Header>
+        <HeaderNav />
+      </Header>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

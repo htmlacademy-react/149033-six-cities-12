@@ -1,7 +1,10 @@
-import HeaderNav from '../header-nav/header-nav';
 import Logo from '../logo/logo';
 
-function Header():JSX.Element {
+type HeaderProps = {
+  children?: JSX.Element;
+}
+
+function Header({children}: HeaderProps):JSX.Element {
   return (
     <header className="header">
       <div className="container">
@@ -9,7 +12,7 @@ function Header():JSX.Element {
           <div className="header__left">
             <Logo />
           </div>
-          <HeaderNav />
+          {children}
         </div>
       </div>
     </header>
