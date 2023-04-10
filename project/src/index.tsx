@@ -5,6 +5,8 @@ import { reviews } from './mocks/reviews';
 import {Provider} from 'react-redux';
 import {store} from './store/index';
 import { checkAuthAction, fetchOfferAction } from './store/api-actions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchOfferAction());
@@ -19,6 +21,7 @@ root.render(
       <App
         reviews={reviews}
       />
+      <ToastContainer />
     </Provider>
   </React.StrictMode>,
 );

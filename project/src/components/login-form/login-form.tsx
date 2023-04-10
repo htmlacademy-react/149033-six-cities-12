@@ -3,7 +3,6 @@ import { useAppDispatch } from '../../hooks';
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { AppRoute } from '../../const';
 import { loginAction } from '../../store/api-actions';
-import { processErrorHandle } from '../../services/process-error-handle';
 
 const LOGIN_FIELDS = ['email', 'password'];
 
@@ -24,11 +23,11 @@ function LoginForm(): JSX.Element {
     const passwordPattern: boolean = (/([0-9].*[a-z])|([a-z].*[0-9])/).test(formField.password);
 
     if (!emailPattern) {
-      processErrorHandle('Введите корректный Email');
+
       return false;
     }
     if (!passwordPattern) {
-      processErrorHandle('Пароль должен состоять минимум из одной буквы и цифры');
+
       return false;
     }
 
