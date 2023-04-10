@@ -1,5 +1,5 @@
-import {Route, Routes} from 'react-router-dom';
-import { AppRoute } from '../../const';
+import {Navigate, Route, Routes} from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
@@ -17,6 +17,7 @@ type AppProps = {
 
 function App( {reviews}: AppProps) {
   const offers = useAppSelector((state)=>state.offers);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -27,7 +28,7 @@ function App( {reviews}: AppProps) {
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginScreen />}
+          element={authorizationStatus === AuthorizationStatus.Auth ? <Navigate to={AppRoute.Main} /> : <LoginScreen />}
         />
         <Route
           path={AppRoute.Favorites}
