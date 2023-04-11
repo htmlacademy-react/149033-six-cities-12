@@ -4,32 +4,49 @@ import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import ReviewList from '../../components/review-list/review-list';
 import Stars from '../../components/stars/stars';
-
 import { Offer } from '../../types/offers';
-import { Review } from '../../types/review';
-import { capitalize, getOffersByCity } from '../../utils';
-import { CLASS_CARD } from '../../const';
+import { capitalize} from '../../utils';
+import { AuthorizationStatus, CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import HeaderNav from '../../components/header-nav/header-nav';
-const COUNT_NEAR_OFFERS = 3;
+import { store } from '../../store';
+import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/api-actions';
+import Loader from '../../components/loader/loader';
+import ReviewsForm from '../../components/reviews-form/reviews-form';
 
-type RoomScreenProps = {
-  offers: Offer[];
-  reviews: Review[];
-};
-
-
-function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
+function RoomScreen(): JSX.Element {
   const {id} = useParams();
-  const currentCity = useAppSelector((state) => state.city);
-  const currentOffer = offers.find( (item) => item.id === Number(id)) as Offer;
-  const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
+  const offerId = Number(id);
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Auth;
+
+  useEffect(() => {
+    store.dispatch(fetchOfferItemAction(offerId));
+    store.dispatch(fetchNearOffersAction(offerId));
+
+    if (shouldDisplayReviews) {
+      store.dispatch(fetchReviewAction(offerId));
+    }
+  }, [offerId, shouldDisplayReviews]);
+
+  const currentOffer = useAppSelector((state) => state.offerItem) as Offer;
+
   const [activeOfferId, setActiveOfferId] = useState(Number(id));
   const onMouseLeaveOffer = () => setActiveOfferId(Number(id));
   const onMouseOverOffer = (currentId:number) => setActiveOfferId(currentId);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  const reviews = useAppSelector((state) => state.reviews);
+
+  if (!currentOffer || isOffersDataLoading) {
+    return <Loader />;
+  }
+  const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
   return (
     <div className="page">
       <Header>
@@ -99,7 +116,10 @@ function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
                   </p>
                 </div>
               </div>
-              <ReviewList reviews={reviews}/>
+              {shouldDisplayReviews &&
+                <ReviewList reviews={reviews}>
+                  <ReviewsForm offerId={offerId} />
+                </ReviewList>}
             </div>
           </div>
 
@@ -112,7 +132,7 @@ function RoomScreen({offers, reviews}: RoomScreenProps): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {getOffersByCity(offers, currentCity).slice(0, COUNT_NEAR_OFFERS).map((item) => (
+              {nearOffers && nearOffers.map((item) => (
                 <Card
                   key={item.id}
                   offer={item}

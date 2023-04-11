@@ -2,8 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { RATING_STARS } from '../../const';
 import RatingForm from '../rating-form/rating-form';
+import { OfferId } from '../../types/offers';
 
-function ReviewsForm():JSX.Element {
+type ReviewsFormProps = {
+  offerId: OfferId;
+};
+
+function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
 
   const [comment, setComment] = useState('');
 

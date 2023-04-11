@@ -43,7 +43,7 @@ function PropertyReviews({reviews}: PropertyReviewsProps): JSX.Element {
           </li>
         ))}
       </ul>
-      <ReviewsForm />
+      {/* <ReviewsForm /> */}
     </section>
   );
 }

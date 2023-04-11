@@ -41,10 +41,7 @@ function App( {reviews}: AppProps) {
         <Route
           path={`${AppRoute.Room}:id`}
           element={
-            <RoomScreen
-              offers={offers}
-              reviews={reviews}
-            />
+            <RoomScreen />
           }
         />
         <Route

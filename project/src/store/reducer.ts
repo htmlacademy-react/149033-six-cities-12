@@ -51,17 +51,17 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offers = payload;
     })
 
-    .addCase(loadOfferItem, (state, action) => {
-      state.offerItem = action.payload;
+    .addCase(loadOfferItem, (state, {payload}) => {
+      state.offerItem = payload;
     })
-    .addCase(loadNearOffers, (state, action) => {
-      state.nearOffers = action.payload;
+    .addCase(loadNearOffers, (state, {payload}) => {
+      state.nearOffers = payload;
     })
-    .addCase(loadReviews, (state, action) => {
-      state.reviews = action.payload;
+    .addCase(loadReviews, (state, {payload}) => {
+      state.reviews = payload;
     })
-    .addCase(setReviewFormBlocked, (state, action) => {
-      state.isReviewFormBlocked = action.payload;
+    .addCase(setReviewFormBlocked, (state, {payload}) => {
+      state.isReviewFormBlocked = payload;
     })
 
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
