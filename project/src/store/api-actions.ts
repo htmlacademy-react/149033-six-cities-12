@@ -8,7 +8,7 @@ import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../co
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {store} from './';
-import { Review } from '../types/review.js';
+import { Review, ReviewData } from '../types/review.js';
 
 export const clearErrorAction = createAsyncThunk(
   'data/clearError',
@@ -92,7 +92,7 @@ export const fetchReviewAction = createAsyncThunk<void, OfferId, {
   }
 );
 
-export const sendReviewAction = createAsyncThunk<void, Review, {
+export const sendReviewAction = createAsyncThunk<void, ReviewData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
