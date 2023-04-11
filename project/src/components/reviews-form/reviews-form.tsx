@@ -6,7 +6,7 @@ import { OfferId } from '../../types/offers';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setReviewFormBlocked } from '../../store/action';
 import { sendReviewAction } from '../../store/api-actions';
-
+const LIMIT_CARACTERS = 50;
 type ReviewsFormProps = {
   offerId: OfferId;
 };
@@ -21,7 +21,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
   const handleTextAreaChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(evt.target.value);
   };
-  const handleInputChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
   };
 
@@ -48,7 +48,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingForm ratingStars={RATING_STARS} handleInputChange={handleInputChange} />
+        <RatingForm ratingStars={RATING_STARS} handleInputChange={handleInputChange} rating={rating}/>
       </div>
       <textarea
         className="reviews__textarea form__textarea"
@@ -63,12 +63,12 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe
           your stay with at least{' '}
-          <b className="reviews__text-amount">50 characters</b>.
+          <b className="reviews__text-amount">{LIMIT_CARACTERS} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          disabled={comment.length < LIMIT_CARACTERS || isReviewFormBlocked }
         >
           {!isReviewFormBlocked ? 'Submit' : 'Sending...'}
         </button>

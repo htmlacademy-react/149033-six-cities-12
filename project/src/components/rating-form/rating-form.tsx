@@ -1,13 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 
 type RatingStarsProps = {
   ratingStars: string[];
-  handleInputChange:() => void;
+  handleInputChange:(evt: React.ChangeEvent<HTMLInputElement>) => void;
+  rating: string | null;
 }
-function RatingForm({ratingStars, handleInputChange}: RatingStarsProps):JSX.Element {
-  const [rating, setRating] = useState<number | null>(null);
-
+function RatingForm({ratingStars, handleInputChange, rating}: RatingStarsProps):JSX.Element {
   const getFormRating = (currentRatingStars: string[]) => {
     const content = [];
     for (let i = currentRatingStars.length; i > 0; i--) {
