@@ -2,7 +2,8 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Room = '/offer/'
+  Room = '/offer/',
+  NotFound = '*',
 }
 
 export enum AuthorizationStatus {
@@ -50,7 +51,8 @@ export enum SORTS {
 export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
-  Logout = '/logout'
+  Logout = '/logout',
+  Reviews = '/comments',
 }
 
 export const DEFFAULT_COORDINATE_MAP = {

@@ -1,13 +1,14 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {Offer} from '../types/offers';
-import {loadOffers, loadUserData, redirectToRoute, requireAuthorization, setError, setOffersDataLoadingStatus} from './action';
+import {Offer, OfferId} from '../types/offers';
+import {loadNearOffers, loadOfferItem, loadOffers, loadReviews, loadUserData, redirectToRoute, requireAuthorization, setError, setOffersDataLoadingStatus, setReviewFormBlocked} from './action';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {store} from './';
+import { Review } from '../types/review.js';
 
 export const clearErrorAction = createAsyncThunk(
   'data/clearError',
@@ -38,6 +39,76 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
     }
   },
 );
+
+export const fetchOfferItemAction = createAsyncThunk<void, OfferId, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOfferItem',
+  async (offerId, {dispatch, extra: api}) => {
+    dispatch(setOffersDataLoadingStatus(true));
+
+    try {
+      const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
+      dispatch(loadOfferItem(data));
+      dispatch(setOffersDataLoadingStatus(false));
+    } catch {
+      dispatch(redirectToRoute(AppRoute.NotFound));
+      dispatch(setOffersDataLoadingStatus(false));
+    }
+  }
+);
+
+export const fetchNearOffersAction = createAsyncThunk<void, OfferId, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearOffers',
+  async (offerId, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${offerId}/nearby`);
+      dispatch(loadNearOffers(data));
+    } catch (error) {
+      throw new Error();
+    }
+  }
+);
+
+export const fetchReviewAction = createAsyncThunk<void, OfferId, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviewAction',
+  async (offerId, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<Review[]>(`${APIRoute.Reviews}/${offerId}`);
+      dispatch(loadReviews(data));
+    } catch (error) {
+      throw new Error();
+    }
+  }
+);
+
+export const sendReviewAction = createAsyncThunk<void, Review, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/sendReviewAction',
+  async ({id, rating, comment}, {dispatch, extra: api}) => {
+    try {
+      await api.post(`${APIRoute.Reviews}/${id}`, {rating, comment});
+      dispatch(fetchReviewAction(id));
+      dispatch(setReviewFormBlocked(false));
+    } catch (error) {
+      throw new Error();
+    }
+  }
+);
+
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
