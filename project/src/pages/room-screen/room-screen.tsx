@@ -10,7 +10,7 @@ import { AuthorizationStatus, CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { store } from '../../store';
 import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/api-actions';
@@ -23,10 +23,10 @@ function RoomScreen(): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Auth;
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    store.dispatch(fetchOfferItemAction(offerId));
-    store.dispatch(fetchNearOffersAction(offerId));
+    dispatch(fetchOfferItemAction(offerId));
+    dispatch(fetchNearOffersAction(offerId));
 
     if (shouldDisplayReviews) {
       store.dispatch(fetchReviewAction(offerId));
