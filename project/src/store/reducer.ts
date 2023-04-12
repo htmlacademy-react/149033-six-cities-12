@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Offer } from '../types/offers';
-import { changeCity, selectOffer, loadOffers, requireAuthorization, setError, changeSort, setOffersDataLoadingStatus, loadUserData, loadOfferItem, loadNearOffers, loadReviews, setReviewFormBlocked} from './action';
+import { changeCity, selectOffer, loadOffers, requireAuthorization, setError, changeSort, setOffersDataLoadingStatus, loadUserData, loadOfferItem, loadNearOffers, loadReviews} from './action';
 import { CityName } from '../types/offers';
 import { AuthorizationStatus, SORTS } from '../const';
 import { UserData } from '../types/user-data';
@@ -20,7 +20,6 @@ type InitialState = {
   offerItem: Offer | null;
   nearOffers: Offer[] | null;
   reviews: Review[] | null;
-  isReviewFormBlocked: boolean;
 };
 
 
@@ -36,7 +35,6 @@ const initialState: InitialState = {
   offerItem: null,
   nearOffers: null,
   reviews: null,
-  isReviewFormBlocked: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -59,9 +57,6 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, {payload}) => {
       state.reviews = payload;
-    })
-    .addCase(setReviewFormBlocked, (state, {payload}) => {
-      state.isReviewFormBlocked = payload;
     })
 
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {

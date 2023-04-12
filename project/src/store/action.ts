@@ -19,8 +19,6 @@ export const loadNearOffers = createAction('data/loadNearOffers',(nearestOffers:
 
 export const loadReviews = createAction('data/loadReviews',(reviews: Review[]) => ({payload: reviews}));
 
-export const setReviewFormBlocked = createAction('data/setReviewFormBlocked',(status: boolean) => ({payload: status}));
-
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 

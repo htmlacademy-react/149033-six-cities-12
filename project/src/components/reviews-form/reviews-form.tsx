@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { RATING_STARS } from '../../const';
 import RatingForm from '../rating-form/rating-form';
 import { OfferId } from '../../types/offers';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setReviewFormBlocked } from '../../store/action';
+import { useAppDispatch } from '../../hooks';
 import { sendReviewAction } from '../../store/api-actions';
 const LIMIT_CARACTERS = 50;
 type ReviewsFormProps = {
@@ -13,7 +12,7 @@ type ReviewsFormProps = {
 
 function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
   const dispatch = useAppDispatch();
-  const isReviewFormBlocked = useAppSelector((state) => state.isReviewFormBlocked);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
@@ -32,7 +31,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
     event.preventDefault();
 
     if (offerId && rating && comment) {
-      dispatch(setReviewFormBlocked(true));
+      setIsLoading(true);
 
       dispatch(sendReviewAction({
         id: offerId,
@@ -70,9 +69,9 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={comment.length < LIMIT_CARACTERS || isReviewFormBlocked }
+          disabled={comment.length < LIMIT_CARACTERS || isLoading }
         >
-          {!isReviewFormBlocked ? 'Submit' : 'Sending...'}
+          {!isLoading ? 'Submit' : 'Sending...'}
         </button>
       </div>
     </form>

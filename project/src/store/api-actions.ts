@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Offer, OfferId} from '../types/offers';
-import {loadNearOffers, loadOfferItem, loadOffers, loadReviews, loadUserData, redirectToRoute, requireAuthorization, setError, setOffersDataLoadingStatus, setReviewFormBlocked} from './action';
+import {loadNearOffers, loadOfferItem, loadOffers, loadReviews, loadUserData, redirectToRoute, requireAuthorization, setError, setOffersDataLoadingStatus} from './action';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
@@ -104,7 +104,6 @@ export const sendReviewAction = createAsyncThunk<void, ReviewData, {
     try {
       await api.post(`${APIRoute.Reviews}/${id}`, {rating, comment});
       dispatch(fetchReviewAction(id));
-      dispatch(setReviewFormBlocked(false));
     } catch (error) {
       throw new Error();
     }
