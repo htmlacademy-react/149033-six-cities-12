@@ -17,7 +17,10 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
 
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
-
+  const resetForm = () => {
+    setComment('');
+    setRating('');
+  };
   const handleTextAreaChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(evt.target.value);
   };
@@ -37,8 +40,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         comment: comment,
       }));
 
-      setComment('');
-      setRating('');
+      resetForm();
     }
   };
 
