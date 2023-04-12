@@ -12,7 +12,7 @@ type ReviewsFormProps = {
 
 function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
   const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
@@ -69,9 +69,9 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={comment.length < LIMIT_CARACTERS || isLoading }
+          disabled={comment.length < LIMIT_CARACTERS || !isLoading }
         >
-          {!isLoading ? 'Submit' : 'Sending...'}
+          {isLoading ? 'Submit' : 'Sending...'}
         </button>
       </div>
     </form>
