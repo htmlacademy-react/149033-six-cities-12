@@ -54,10 +54,10 @@ export const fetchOfferItemAction = createAsyncThunk<void, OfferId, {
       dispatch(loadOfferItem(data));
       dispatch(setOffersDataLoadingStatus(false));
     } catch {
-      dispatch(redirectToRoute(AppRoute.NotFound));;
+      dispatch(redirectToRoute(AppRoute.NotFound));
     }
     finally {
-      dispatch(setOffersDataLoadingStatus(false))
+      dispatch(setOffersDataLoadingStatus(false));
     }
   }
 );
