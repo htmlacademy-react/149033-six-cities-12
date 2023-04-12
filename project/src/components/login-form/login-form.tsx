@@ -1,7 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { useState, FormEvent, ChangeEvent} from 'react';
-import { AppRoute } from '../../const';
 import { loginAction } from '../../store/api-actions';
 
 type FormData = {
@@ -10,7 +8,6 @@ type FormData = {
 };
 
 function LoginForm(): JSX.Element {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [isDisabledBtn, setDisabledBtn] = useState(true);
@@ -50,13 +47,6 @@ function LoginForm(): JSX.Element {
         login: formData.email,
         password: formData.password
       }));
-
-      setFormData({
-        email: '',
-        password: ''
-      });
-
-      navigate(AppRoute.Main);
     }
   };
 
