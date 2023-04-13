@@ -1,12 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 
 type RatingStarsProps = {
   ratingStars: string[];
+  handleInputChange:(evt: React.ChangeEvent<HTMLInputElement>) => void;
+  rating: string | null;
 }
-function RatingForm({ratingStars}: RatingStarsProps):JSX.Element {
-  const [rating, setRating] = useState<number | null>(null);
-
+function RatingForm({ratingStars, handleInputChange, rating}: RatingStarsProps):JSX.Element {
   const getFormRating = (currentRatingStars: string[]) => {
     const content = [];
     for (let i = currentRatingStars.length; i > 0; i--) {
@@ -18,7 +17,7 @@ function RatingForm({ratingStars}: RatingStarsProps):JSX.Element {
             value={i}
             id = {`${i}-stars`}
             type="radio"
-            onChange={() => setRating(i)}
+            onChange={handleInputChange}
             checked={Number(rating) === i}
           />
           <label

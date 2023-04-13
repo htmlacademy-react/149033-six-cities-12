@@ -1,5 +1,4 @@
 import { Review } from '../../types/review';
-import ReviewsForm from '../reviews-form/reviews-form';
 import Stars from '../stars/stars';
 
 type PropertyReviewsProps = {
@@ -43,7 +42,7 @@ function PropertyReviews({reviews}: PropertyReviewsProps): JSX.Element {
           </li>
         ))}
       </ul>
-      <ReviewsForm />
+      {/* <ReviewsForm /> */}
     </section>
   );
 }

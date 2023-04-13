@@ -34,5 +34,5 @@ export type Offer = {
   title: string;
   type: string;
 };
-
+export type OfferId = number;
 export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';

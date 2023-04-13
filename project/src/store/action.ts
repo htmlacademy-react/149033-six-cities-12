@@ -2,20 +2,23 @@ import {createAction} from '@reduxjs/toolkit';
 import { CityName, Offer } from '../types/offers';
 import { AppRoute, AuthorizationStatus, SORTS } from '../const';
 import { UserData } from '../types/user-data';
+import { Review } from '../types/review';
 
-export const changeCity = createAction(
-  'city/changeCity',
-  (city: CityName) => ({payload: city})
-);
+export const changeCity = createAction('city/changeCity',(city: CityName) => ({payload: city}));
 
 export const updateOfferList = createAction('offer/updateOfferList');
 
-export const selectOffer = createAction(
-  'offer/selectOffer',
-  (offerId: number | null) => ({payload: offerId})
-);
+export const selectOffer = createAction('offer/selectOffer',(offerId: number | null) => ({payload: offerId}));
 
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
+
+
+export const loadOfferItem = createAction('data/loadOfferItem',(offerItem: Offer) => ({payload: offerItem}));
+
+export const loadNearOffers = createAction('data/loadNearOffers',(nearestOffers: Offer[]) => ({payload: nearestOffers}));
+
+export const loadReviews = createAction('data/loadReviews',(reviews: Review[]) => ({payload: reviews}));
+
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 

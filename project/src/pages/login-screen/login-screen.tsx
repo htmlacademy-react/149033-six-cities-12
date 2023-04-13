@@ -1,15 +1,7 @@
-import { Navigate } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppSelector } from '../../hooks';
 import LoginForm from '../../components/login-form/login-form';
 
 function LoginScreen(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Main} />;
-  }
   return (
     <div className="page page--gray page--login">
       <header className="header">
