@@ -1,8 +1,10 @@
 import { AuthorizationStatus } from '../const';
 import { store } from '../store/index';
+import { UserData } from './user-data';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
+  userData: UserData | null;
 };
 
 export type State = ReturnType<typeof store.getState>;
