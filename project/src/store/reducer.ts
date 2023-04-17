@@ -39,15 +39,15 @@ const initialState: InitialState = {
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state, {payload}) => {
-      state.city = payload;
-    })
-    .addCase(selectOffer, (state, {payload}) => {
-      state.selectedOfferId = payload;
-    })
-    .addCase(loadOffers, (state, {payload}) => {
-      state.offers = payload;
-    })
+    // .addCase(changeCity, (state, {payload}) => {
+    //   state.city = payload;
+    // })
+    // .addCase(selectOffer, (state, {payload}) => {
+    //   state.selectedOfferId = payload;
+    // })
+    // .addCase(loadOffers, (state, {payload}) => {
+    //   state.offers = payload;
+    // })
 
     .addCase(loadOfferItem, (state, {payload}) => {
       state.offerItem = payload;
@@ -62,16 +62,16 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
       state.isOffersDataLoading = payload;
     })
-    .addCase(requireAuthorization, (state, {payload}) => {
-      state.authorizationStatus = payload;
-    })
-    .addCase(loadUserData, (state, {payload}) => {
-      state.userData = payload;
-    })
+    // .addCase(requireAuthorization, (state, {payload}) => {
+    //   state.authorizationStatus = payload;
+    // })
+    // .addCase(loadUserData, (state, {payload}) => {
+    //   state.userData = payload;
+    // })
     .addCase(setError, (state, {payload}) => {
       state.error = payload;
     })
-    .addCase(changeSort, (state, {payload}) => {
-      state.sortType = payload;
-    });
+    // .addCase(changeSort, (state, {payload}) => {
+    //   state.sortType = payload;
+    // });
 });
