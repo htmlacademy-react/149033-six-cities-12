@@ -1,12 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchOfferItemAction, fetchNearOffersAction, fetchReviewAction} from './api-actions';
+import {fetchOfferItemAction, fetchNearOffersAction, fetchReviewAction, sendReviewAction} from './api-actions';
 import {NameSpace} from '../../const';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 
 type OfferDataState = {
   isOfferDataLoading: boolean;
-  errorOffer: string | null;
   offerItem: Offer | null;
   nearOffers: Offer[] | null;
   reviews: Review[] | null;
@@ -15,7 +14,6 @@ type OfferDataState = {
 
 const initialState: OfferDataState = {
   isOfferDataLoading: false,
-  errorOffer: null,
   offerItem: null,
   nearOffers: null,
   reviews: null,
@@ -29,7 +27,6 @@ export const offerData = createSlice({
     builder
       .addCase(fetchOfferItemAction.pending, (state) => {
         state.isOfferDataLoading = true;
-        state.errorOffer = '';
       })
       .addCase(fetchOfferItemAction.fulfilled, (state, action) => {
         state.isOfferDataLoading = false;
@@ -37,12 +34,14 @@ export const offerData = createSlice({
       })
       .addCase(fetchOfferItemAction.rejected, (state) => {
         state.isOfferDataLoading = false;
-        state.errorOffer = 'ошибка';
       })
       .addCase(fetchNearOffersAction.fulfilled, (state, action) => {
         state.nearOffers = action.payload;
       })
       .addCase(fetchReviewAction.fulfilled, (state, action) => {
+        state.reviews = action.payload;
+      })
+      .addCase(sendReviewAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
       });
   }

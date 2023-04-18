@@ -7,17 +7,27 @@ import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
 import { Review } from '../../types/review';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-router/history-router';
+import { getOffers } from '../../store/offers-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { useEffect } from 'react';
+import { fetchOffersAction } from '../../store/offers-data/api-actions';
 
 type AppProps = {
   reviews: Review[];
 };
 
 function App( {reviews}: AppProps) {
-  const offers = useAppSelector((state)=>state.offers);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const offers = useAppSelector(getOffers);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!offers.length){
+      dispatch(fetchOffersAction());
+    }
+  }, [dispatch, offers]);
 
   return (
     <HistoryRouter history={browserHistory}>

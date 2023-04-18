@@ -11,7 +11,6 @@ type OffersDataState = {
   offers: Offer[];
   selectedOfferId: number | null;
   isOffersDataLoading: boolean;
-  error: string | null;
   sortType: SORTS;
 };
 
@@ -20,7 +19,6 @@ const initialState: OffersDataState = {
   offers: [] as Offer[],
   selectedOfferId: null,
   isOffersDataLoading: false,
-  error: null,
   sortType: SORTS.Popular,
 };
 
@@ -45,7 +43,6 @@ export const offersData = createSlice({
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.isOffersDataLoading = false;
-        state.error = 'ошибка';
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.isOffersDataLoading = false;

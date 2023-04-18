@@ -8,22 +8,23 @@ import { useAppSelector } from '../../hooks';
 import { useState } from 'react';
 
 import { useSort } from '../../hooks/useSort/useSort';
-import { getOffersByCity } from '../../utils';
+
 import Loader from '../../components/loader/loader';
 import HeaderNav from '../../components/header-nav/header-nav';
+import { getCity, getIsOffersDataLoading, getOffersByCity, getSort } from '../../store/offers-data/selectors';
 
 type MainScreenProps = {
   offers: Offer[];
 }
 
 function MainScreen({offers}:MainScreenProps): JSX.Element {
-  const city = useAppSelector((state)=>state.city);
+  const city = useAppSelector(getCity);
   const [activeOfferId, setActiveOfferId] = useState(0);
   const onMouseOverOffer = (id:number) => setActiveOfferId(id);
   const onMouseLeaveOffer = () => setActiveOfferId(0);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const offersByCity = getOffersByCity(offers, city);
-  const sortType = useAppSelector((state)=>state.sortType);
+  const isOffersDataLoading = useAppSelector(getIsOffersDataLoading);
+  const offersByCity = useAppSelector(getOffersByCity);
+  const sortType = useAppSelector(getSort);
   const sortedOffers = useSort(offersByCity, sortType);
   return (
     <div className="page page--gray page--main">

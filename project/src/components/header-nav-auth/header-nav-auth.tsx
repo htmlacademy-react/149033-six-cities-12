@@ -3,10 +3,11 @@ import { MouseEvent} from 'react';
 import { AppRoute, DEFFAULT_IMG_AVATAR } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import cn from 'classnames';
-import { logoutAction } from '../../store/api-actions';
+import { getUserData } from '../../store/user-process/selectors';
+import { logoutAction } from '../../store/user-process/api-actions';
 
 function HeaderNavAuth():JSX.Element {
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
   return (
     <ul className="header__nav-list">

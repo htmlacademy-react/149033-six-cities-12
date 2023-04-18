@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {changeCity} from '../../store/action';
 import { CityName } from '../../types/offers';
+import { getCity } from '../../store/offers-data/selectors';
 
 type ItemCity = {
   city: string;
@@ -35,7 +36,7 @@ function Locations():JSX.Element {
       active: false,
     },
   ];
-  const currentCity = useAppSelector((state) => state.city);
+  const currentCity = useAppSelector(getCity);
   const dispatch = useAppDispatch();
 
   return (

@@ -4,7 +4,6 @@ import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import ReviewList from '../../components/review-list/review-list';
 import Stars from '../../components/stars/stars';
-import { Offer } from '../../types/offers';
 import { capitalize} from '../../utils';
 import { AuthorizationStatus, CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
@@ -13,15 +12,17 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { store } from '../../store';
-import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/api-actions';
 import Loader from '../../components/loader/loader';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getIsOfferDataLoading, getNearOffers, getOfferItem, getReviews } from '../../store/offer-data/selectors';
+import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/offer-data/api-actions';
 
 function RoomScreen(): JSX.Element {
   const {id} = useParams();
   const offerId = Number(id);
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Auth;
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -33,15 +34,15 @@ function RoomScreen(): JSX.Element {
     }
   }, [offerId, shouldDisplayReviews]);
 
-  const currentOffer = useAppSelector((state) => state.offerItem) as Offer;
+  const currentOffer = useAppSelector(getOfferItem);
 
   const [activeOfferId, setActiveOfferId] = useState(Number(id));
   const onMouseLeaveOffer = () => setActiveOfferId(Number(id));
   const onMouseOverOffer = (currentId:number) => setActiveOfferId(currentId);
-  const nearOffers = useAppSelector((state) => state.nearOffers);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const nearOffers = useAppSelector(getNearOffers);
+  const isOffersDataLoading = useAppSelector(getIsOfferDataLoading);
 
-  const reviews = useAppSelector((state) => state.reviews);
+  const reviews = useAppSelector(getReviews);
 
   if (!currentOffer || isOffersDataLoading) {
     return <Loader />;
