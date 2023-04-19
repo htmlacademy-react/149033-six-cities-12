@@ -32,6 +32,9 @@ function MainScreen(): JSX.Element {
     }
   }, [dispatch, offers]);
 
+  if(isOffersDataLoading) {
+    return <Loader />;
+  }
   return (
     <div className="page page--gray page--main">
       <Header>
@@ -42,6 +45,7 @@ function MainScreen(): JSX.Element {
         <div className="tabs">
           <Locations />
         </div>
+
         {!offers.length ? <MainEmpty city={city}/> : (
           <div className="cities">
             <div className="cities__places-container container">
@@ -49,11 +53,7 @@ function MainScreen(): JSX.Element {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersByCity.length}&nbsp;places to stay in {city}</b>
                 <Sort />
-                {
-                  isOffersDataLoading
-                    ? <Loader />
-                    : <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
-                }
+                <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
               </section>
               <div className="cities__right-section">
                 <Map activeOfferId={activeOfferId}/>

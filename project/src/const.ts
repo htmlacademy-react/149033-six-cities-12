@@ -53,6 +53,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Reviews = '/comments',
+  Favorite = '/favorite',
 }
 
 export const DEFFAULT_COORDINATE_MAP = {
@@ -102,3 +103,4 @@ export enum NameSpace {
   App = 'APP',
   Favorite = 'FAVORITE',
 }
+

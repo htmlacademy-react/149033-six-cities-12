@@ -17,6 +17,7 @@ import ReviewsForm from '../../components/reviews-form/reviews-form';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getIsOfferDataLoading, getNearOffers, getOfferItem, getReviews } from '../../store/offer-data/selectors';
 import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/offer-data/api-actions';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 
 function RoomScreen(): JSX.Element {
   const {id} = useParams();
@@ -66,12 +67,11 @@ function RoomScreen(): JSX.Element {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width={31} height={33}>
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton
+                  offerId={currentOffer.id}
+                  isFavorite={currentOffer.isFavorite}
+                  isBigSize
+                />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
