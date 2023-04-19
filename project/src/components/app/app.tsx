@@ -6,7 +6,6 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
-import { Review } from '../../types/review';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-router/history-router';
@@ -15,11 +14,8 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useEffect } from 'react';
 import { fetchOffersAction } from '../../store/offers-data/api-actions';
 
-type AppProps = {
-  reviews: Review[];
-};
 
-function App( {reviews}: AppProps) {
+function App() {
   const offers = useAppSelector(getOffers);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();

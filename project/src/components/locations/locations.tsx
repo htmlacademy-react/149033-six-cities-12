@@ -1,8 +1,8 @@
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {changeCity} from '../../store/action';
 import { CityName } from '../../types/offers';
 import { getCity } from '../../store/offers-data/selectors';
+import { changeCity } from '../../store/offers-data/offers-data';
 
 type ItemCity = {
   city: string;
