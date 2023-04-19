@@ -1,5 +1,5 @@
 import { NameSpace, SORTS } from '../../const';
-import { Offer } from '../../types/offers';
+import { CityName, Offer } from '../../types/offers';
 import { State } from '../../types/state';
 
 const getOffers = (state: State) => state[NameSpace.Offers].offers;
@@ -8,6 +8,6 @@ const getIsOffersDataLoading = (state: State) => state[NameSpace.Offers].isOffer
 const getSort = (state: State): SORTS => state[NameSpace.Offers].sortType;
 
 const getOffersByCity = (state: State): Offer[] => state[NameSpace.Offers].offers.filter((offer) => offer.city.name === state[NameSpace.Offers].city);
+const getListCity = (state: State): CityName[] => Array.from(new Set( state[NameSpace.Offers].offers.map( (item) => item.city.name) ));
 
-
-export { getOffers, getCity, getIsOffersDataLoading, getSort, getOffersByCity };
+export { getOffers, getCity, getIsOffersDataLoading, getSort, getOffersByCity, getListCity };

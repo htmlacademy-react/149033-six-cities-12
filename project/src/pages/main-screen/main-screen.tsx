@@ -1,23 +1,20 @@
 import Header from '../../components/header/header';
 import Offerlist from '../../components/offers-list/offers-list';
-import { Offer } from '../../types/offers';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import Map from '../../components/map/map';
-import { useAppSelector } from '../../hooks';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect, useState } from 'react';
 
 import { useSort } from '../../hooks/useSort/useSort';
 
 import Loader from '../../components/loader/loader';
 import HeaderNav from '../../components/header-nav/header-nav';
-import { getCity, getIsOffersDataLoading, getOffersByCity, getSort } from '../../store/offers-data/selectors';
+import { getCity, getIsOffersDataLoading, getOffers, getOffersByCity, getSort } from '../../store/offers-data/selectors';
+import { fetchOffersAction } from '../../store/offers-data/api-actions';
 
-type MainScreenProps = {
-  offers: Offer[];
-}
-
-function MainScreen({offers}:MainScreenProps): JSX.Element {
+function MainScreen(): JSX.Element {
+  const offers = useAppSelector(getOffers);
   const city = useAppSelector(getCity);
   const [activeOfferId, setActiveOfferId] = useState(0);
   const onMouseOverOffer = (id:number) => setActiveOfferId(id);
@@ -26,6 +23,14 @@ function MainScreen({offers}:MainScreenProps): JSX.Element {
   const offersByCity = useAppSelector(getOffersByCity);
   const sortType = useAppSelector(getSort);
   const sortedOffers = useSort(offersByCity, sortType);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!offers.length){
+      dispatch(fetchOffersAction());
+    }
+  }, [dispatch, offers]);
+
   return (
     <div className="page page--gray page--main">
       <Header>

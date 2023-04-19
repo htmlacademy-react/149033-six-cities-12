@@ -1,16 +1,15 @@
-import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 import { AppRoute, CLASS_CARD } from '../../const';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import Card from '../../components/card/card';
+import { getListCity, getOffers } from '../../store/offers-data/selectors';
+import { useAppSelector } from '../../hooks';
 
-type FavoritesScreenProps = {
-  offers: Offer[];
-};
 
-function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
-  const listCity = Array.from(new Set( offers.map( (item) => item.city.name) ));
+function FavoritesScreen(): JSX.Element {
+  const listCity = useAppSelector(getListCity);
+  const offers = useAppSelector(getOffers);
   return (
     <div className="page">
       <Header />
