@@ -12,6 +12,7 @@ import Loader from '../../components/loader/loader';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { getCity, getIsOffersDataLoading, getOffers, getOffersByCity, getSort } from '../../store/offers-data/selectors';
 import { fetchOffersAction } from '../../store/offers-data/api-actions';
+import MainEmpty from '../../components/main-empty/main-empty';
 
 function MainScreen(): JSX.Element {
   const offers = useAppSelector(getOffers);
@@ -41,23 +42,25 @@ function MainScreen(): JSX.Element {
         <div className="tabs">
           <Locations />
         </div>
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersByCity.length}&nbsp;places to stay in {city}</b>
-              <Sort />
-              {
-                isOffersDataLoading
-                  ? <Loader />
-                  : <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
-              }
-            </section>
-            <div className="cities__right-section">
-              <Map activeOfferId={activeOfferId}/>
+        {!offers.length ? <MainEmpty city={city}/> : (
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{offersByCity.length}&nbsp;places to stay in {city}</b>
+                <Sort />
+                {
+                  isOffersDataLoading
+                    ? <Loader />
+                    : <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
+                }
+              </section>
+              <div className="cities__right-section">
+                <Map activeOfferId={activeOfferId}/>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );
