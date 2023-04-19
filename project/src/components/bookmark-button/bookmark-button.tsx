@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setFavoritesAction } from '../../store/favorite-data/api-actions';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getAuthCheckedStatus } from '../../store/user-process/selectors';
 import cn from 'classnames';
 
 type BookmarkButtonProps = {
@@ -13,13 +13,11 @@ type BookmarkButtonProps = {
 
 export default function BookmarkButton({offerId, isFavorite, isBigSize}: BookmarkButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(getAuthorizationStatus);
+  const isAuth = useAppSelector(getAuthCheckedStatus);
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     if (isAuth) {
-    // eslint-disable-next-line no-console
-      console.log(offerId);
       dispatch(setFavoritesAction({
         id: offerId,
         status: Number(!isFavorite)

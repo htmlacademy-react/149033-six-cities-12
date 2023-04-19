@@ -9,7 +9,7 @@ export type UserProcess = {
 };
 
 const initialState: UserProcess = {
-  authorizationStatus: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.NoAuth,
   userData: null,
 };
 
