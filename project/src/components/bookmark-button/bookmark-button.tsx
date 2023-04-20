@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setFavoritesAction } from '../../store/favorite-data/api-actions';
+import { fetchFavoritesAction, setFavoritesAction } from '../../store/favorite-data/api-actions';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
 import cn from 'classnames';
+import { useEffect, useState } from 'react';
 
 type BookmarkButtonProps = {
   offerId: number;
@@ -15,14 +16,17 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const navigate = useNavigate();
-
+  const [isActive, setIsActive] = useState(isFavorite);
+  useEffect(() => {
+    dispatch(fetchFavoritesAction());
+  }, [dispatch]);
   const handleButtonClick = () => {
-    console.log(isFavorite);
     if (isAuth) {
       dispatch(setFavoritesAction({
         id: offerId,
-        status: Number(!isFavorite)
+        status: Number(!isActive)
       }));
+      setIsActive( (option) => !option);
     } else {
       navigate(AppRoute.Login);
     }
@@ -31,12 +35,12 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
 
   return (
     <button
-      className={cn('button', {
+      className={cn({
         'property__bookmark-button': isBigSize,
-        'property__bookmark-button--active': isBigSize && isFavorite,
+        'property__bookmark-button--active': isBigSize && isActive,
         'place-card__bookmark-button': !isBigSize,
-        'place-card__bookmark-button--active': !isBigSize && isFavorite
-      })}
+        'place-card__bookmark-button--active': !isBigSize && isActive,
+      }, 'button')}
       type="button"
       onClick={handleButtonClick}
     >

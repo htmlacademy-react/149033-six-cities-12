@@ -1,16 +1,21 @@
 import { Link } from 'react-router-dom';
-import { MouseEvent} from 'react';
+import { MouseEvent, useEffect} from 'react';
 import { AppRoute, DEFFAULT_IMG_AVATAR } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import cn from 'classnames';
 import { getUserData } from '../../store/user-process/selectors';
 import { logoutAction } from '../../store/user-process/api-actions';
 import { getFavoritesCount } from '../../store/favorite-data/selector';
+import { fetchFavoritesAction } from '../../store/favorite-data/api-actions';
 
 function HeaderNavAuth():JSX.Element {
   const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
   const favoritesCount = useAppSelector(getFavoritesCount);
+
+  useEffect(() => {
+    dispatch(fetchFavoritesAction());
+  }, [dispatch]);
 
   return (
     <ul className="header__nav-list">
