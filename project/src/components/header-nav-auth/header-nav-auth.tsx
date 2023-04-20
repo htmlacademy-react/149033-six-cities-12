@@ -11,6 +11,7 @@ function HeaderNavAuth():JSX.Element {
   const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
   const favoritesCount = useAppSelector(getFavoritesCount);
+
   return (
     <ul className="header__nav-list">
       <li className="header__nav-item user">

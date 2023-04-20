@@ -4,6 +4,8 @@ import { Offer } from '../../types/offers';
 import PremiumMark from '../premium-mark/premium-mark';
 import Stars from '../stars/stars';
 import BookmarkButton from '../bookmark-button/bookmark-button';
+import { selectOffer } from '../../store/offers-data/offers-data';
+import { useAppDispatch } from '../../hooks';
 type ClassCard = {
   name: string;
   width: number;
@@ -13,11 +15,10 @@ type ClassCard = {
 type CardProps = {
   offer: Offer;
   classCard: ClassCard;
-  onMouseOverOffer?(id:number): void;
-  onMouseLeaveOffer?(): void;
 };
 
-function Card({offer, classCard, onMouseLeaveOffer = () => null, onMouseOverOffer = () => null}: CardProps): JSX.Element {
+function Card({offer, classCard}: CardProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const {
     price,
     previewImage,
@@ -35,7 +36,10 @@ function Card({offer, classCard, onMouseLeaveOffer = () => null, onMouseOverOffe
   } = classCard;
 
   return (
-    <article className={`${name}__card place-card`} onMouseOver={() => onMouseOverOffer(id)} onMouseLeave={() => onMouseLeaveOffer()} >
+    <article className={`${name}__card place-card`}
+      onMouseEnter={() => dispatch(selectOffer(offer.id))}
+      onMouseLeave={() => dispatch(selectOffer(null))}
+    >
       <PremiumMark isPremium={isPremium} />
       <div className={`${name}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>

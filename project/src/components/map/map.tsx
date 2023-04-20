@@ -22,7 +22,7 @@ const currentCustomIcon = new Icon({
 });
 
 type MapProps = {
-  activeOfferId: number;
+  activeOfferId: number | null;
 }
 
 function Map({activeOfferId}:MapProps): JSX.Element {

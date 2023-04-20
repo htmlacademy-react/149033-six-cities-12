@@ -4,22 +4,20 @@ import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import Map from '../../components/map/map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 
 import { useSort } from '../../hooks/useSort/useSort';
 
 import Loader from '../../components/loader/loader';
 import HeaderNav from '../../components/header-nav/header-nav';
-import { getCity, getIsOffersDataLoading, getOffers, getOffersByCity, getSort } from '../../store/offers-data/selectors';
+import { getCity, getIsOffersDataLoading, getOffers, getOffersByCity, getSelectedOfferId, getSort } from '../../store/offers-data/selectors';
 import { fetchOffersAction } from '../../store/offers-data/api-actions';
 import MainEmpty from '../../components/main-empty/main-empty';
 
 function MainScreen(): JSX.Element {
   const offers = useAppSelector(getOffers);
   const city = useAppSelector(getCity);
-  const [activeOfferId, setActiveOfferId] = useState(0);
-  const onMouseOverOffer = (id:number) => setActiveOfferId(id);
-  const onMouseLeaveOffer = () => setActiveOfferId(0);
+  const selectedOfferId = useAppSelector(getSelectedOfferId);
   const isOffersDataLoading = useAppSelector(getIsOffersDataLoading);
   const offersByCity = useAppSelector(getOffersByCity);
   const sortType = useAppSelector(getSort);
@@ -53,10 +51,10 @@ function MainScreen(): JSX.Element {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersByCity.length}&nbsp;places to stay in {city}</b>
                 <Sort />
-                <Offerlist offers={sortedOffers} onMouseLeaveOffer={onMouseLeaveOffer} onMouseOverOffer={onMouseOverOffer}/>
+                <Offerlist offers={sortedOffers}/>
               </section>
               <div className="cities__right-section">
-                <Map activeOfferId={activeOfferId}/>
+                <Map activeOfferId={selectedOfferId}/>
               </div>
             </div>
           </div>

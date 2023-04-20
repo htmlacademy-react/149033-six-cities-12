@@ -17,6 +17,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
+    console.log(isFavorite);
     if (isAuth) {
       dispatch(setFavoritesAction({
         id: offerId,

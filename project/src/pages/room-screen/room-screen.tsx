@@ -8,7 +8,7 @@ import { capitalize} from '../../utils';
 import { AuthorizationStatus, CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { store } from '../../store';
@@ -18,6 +18,7 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getIsOfferDataLoading, getNearOffers, getOfferItem, getReviews } from '../../store/offer-data/selectors';
 import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/offer-data/api-actions';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
+import { getSelectedOfferId } from '../../store/offers-data/selectors';
 
 function RoomScreen(): JSX.Element {
   const {id} = useParams();
@@ -37,9 +38,7 @@ function RoomScreen(): JSX.Element {
 
   const currentOffer = useAppSelector(getOfferItem);
 
-  const [activeOfferId, setActiveOfferId] = useState(Number(id));
-  const onMouseLeaveOffer = () => setActiveOfferId(Number(id));
-  const onMouseOverOffer = (currentId:number) => setActiveOfferId(currentId);
+  const selectedOfferId = useAppSelector(getSelectedOfferId);
   const nearOffers = useAppSelector(getNearOffers);
   const isOffersDataLoading = useAppSelector(getIsOfferDataLoading);
 
@@ -124,7 +123,7 @@ function RoomScreen(): JSX.Element {
             </div>
           </div>
 
-          <Map activeOfferId={activeOfferId}/>
+          <Map activeOfferId={selectedOfferId}/>
 
         </section>
         <div className="container">
@@ -138,8 +137,6 @@ function RoomScreen(): JSX.Element {
                   key={item.id}
                   offer={item}
                   classCard={CLASS_CARD.CITY}
-                  onMouseLeaveOffer={onMouseLeaveOffer}
-                  onMouseOverOffer={onMouseOverOffer}
                 />
               ))}
             </div>
