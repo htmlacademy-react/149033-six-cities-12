@@ -26,7 +26,6 @@ type MapProps = {
 }
 
 function Map({activeOfferId}:MapProps): JSX.Element {
-  //const city = useAppSelector(getCity);
   const offers = useAppSelector(getOffersByCity);
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, DEFFAULT_OFFER as Offer);

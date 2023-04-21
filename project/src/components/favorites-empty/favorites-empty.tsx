@@ -1,7 +1,6 @@
 
 export default function FavoriteEmpty() {
   return (
-
     <section className="favorites favorites--empty">
       <h1 className="visually-hidden">Favorites (empty)</h1>
       <div className="favorites__status-wrapper">
@@ -9,6 +8,5 @@ export default function FavoriteEmpty() {
         <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
       </div>
     </section>
-
   );
 }

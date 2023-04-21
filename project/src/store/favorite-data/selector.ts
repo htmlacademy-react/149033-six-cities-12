@@ -10,19 +10,3 @@ export const getFavoritesCount = (state: State): number =>
 
 export const getSetStatus = (state: State): boolean | null =>
   state[NameSpace.Favorite].setStatus;
-
-// export const getFavoriteFetchStatus = createSelector(
-//   [getFetchStatus], (status) => ({
-//     isLoading: status === FetchStatus.Loading,
-//     isError: status === FetchStatus.Failed,
-//     isSuccess: status === FetchStatus.Success
-//   })
-// );
-
-// export const getFavoriteSetStatus = createSelector(
-//   [getSetStatus], (status) => ({
-//     isLoading: status === FetchStatus.Loading,
-//     isError: status === FetchStatus.Failed,
-//     isSuccess: status === FetchStatus.Success
-//   })
-// );

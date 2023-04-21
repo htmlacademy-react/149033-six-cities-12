@@ -52,7 +52,7 @@ function Locations():JSX.Element {
                 dispatch(changeCity(item.city as CityName));
               }}
             >
-              {item.city}
+              <span>{item.city}</span>
             </a>
           </li>
         ))}

@@ -9,10 +9,9 @@ import { useEffect } from 'react';
 import { getFavorites } from '../../store/favorite-data/selector';
 import FavoriteEmpty from '../../components/favorites-empty/favorites-empty';
 import HeaderNav from '../../components/header-nav/header-nav';
-import { Offer } from '../../types/offers';
-type OfferGroupedByCity = {
-  [city: string]: Offer[];
-}
+import { CityName, Offer } from '../../types/offers';
+
+type OfferGroupedByCity = Record<CityName, Offer[]>
 
 function FavoritesScreen(): JSX.Element {
   const offers = useAppSelector(getFavorites);
@@ -30,7 +29,7 @@ function FavoritesScreen(): JSX.Element {
     }
     res[cityName].push(offer);
     return res;
-  }, {});
+  }, {} as OfferGroupedByCity);
 
   return (
     <div className="page">
