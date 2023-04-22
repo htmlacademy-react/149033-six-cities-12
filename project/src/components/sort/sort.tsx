@@ -2,12 +2,13 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { SORTS } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeSort } from '../../store/action';
+import { getSort } from '../../store/offers-data/selectors';
+import { changeSort } from '../../store/offers-data/offers-data';
 
 
 function Sort():JSX.Element {
   const [isShowSort, setIsShowSort] = useState(false);
-  const sortType = useAppSelector((state) => state.sortType);
+  const sortType = useAppSelector(getSort);
   const dispatch = useAppDispatch();
   return (
     <form className="places__sorting" action="#" method="get">

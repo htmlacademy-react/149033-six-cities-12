@@ -1,13 +1,22 @@
 import { Link } from 'react-router-dom';
-import { MouseEvent} from 'react';
+import { MouseEvent, useEffect} from 'react';
 import { AppRoute, DEFFAULT_IMG_AVATAR } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import cn from 'classnames';
-import { logoutAction } from '../../store/api-actions';
+import { getUserData } from '../../store/user-process/selectors';
+import { logoutAction } from '../../store/user-process/api-actions';
+import { getFavoritesCount } from '../../store/favorite-data/selector';
+import { fetchFavoritesAction } from '../../store/favorite-data/api-actions';
 
 function HeaderNavAuth():JSX.Element {
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
+  const favoritesCount = useAppSelector(getFavoritesCount);
+
+  useEffect(() => {
+    dispatch(fetchFavoritesAction());
+  }, [dispatch]);
+
   return (
     <ul className="header__nav-list">
       <li className="header__nav-item user">
@@ -15,7 +24,7 @@ function HeaderNavAuth():JSX.Element {
           <div className={cn('header__avatar-wrapper', 'user__avatar-wrapper')} style={{backgroundImage: `url(${userData?.avatarUrl ?? DEFFAULT_IMG_AVATAR})`}}>
           </div>
           <span className="header__user-name user__name">{userData?.email}</span>
-          <span className="header__favorite-count">3</span>
+          <span className="header__favorite-count">{favoritesCount}</span>
         </Link>
       </li>
       <li className="header__nav-item">

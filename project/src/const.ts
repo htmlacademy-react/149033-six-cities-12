@@ -53,6 +53,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Reviews = '/comments',
+  Favorite = '/favorite',
 }
 
 export const DEFFAULT_COORDINATE_MAP = {
@@ -94,3 +95,12 @@ export const DEFFAULT_OFFER = {
 export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const DEFFAULT_IMG_AVATAR = './img/avatar.svg';
+
+export enum NameSpace {
+  Offers = 'OFFERS',
+  User = 'USER',
+  Offer = 'OFFER',
+  App = 'APP',
+  Favorite = 'FAVORITE',
+}
+

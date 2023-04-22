@@ -4,7 +4,7 @@ import { RATING_STARS } from '../../const';
 import RatingForm from '../rating-form/rating-form';
 import { OfferId } from '../../types/offers';
 import { useAppDispatch } from '../../hooks';
-import { sendReviewAction } from '../../store/api-actions';
+import { sendReviewAction } from '../../store/offer-data/api-actions';
 const LIMIT_CARACTERS = 50;
 type ReviewsFormProps = {
   offerId: OfferId;

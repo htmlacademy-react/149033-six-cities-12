@@ -6,25 +6,27 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import MainScreen from '../../pages/main-screen/main-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
-import { Review } from '../../types/review';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-router/history-router';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { useEffect } from 'react';
+import { checkAuthAction } from '../../store/user-process/api-actions';
 
-type AppProps = {
-  reviews: Review[];
-};
 
-function App( {reviews}: AppProps) {
-  const offers = useAppSelector((state)=>state.offers);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+function App() {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
 
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen offers = {offers}/>}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.Login}
@@ -34,7 +36,7 @@ function App( {reviews}: AppProps) {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen offers = {offers}/>
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />

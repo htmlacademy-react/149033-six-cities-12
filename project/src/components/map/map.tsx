@@ -7,7 +7,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { getOffersByCity } from '../../utils';
+import { getOffersByCity } from '../../store/offers-data/selectors';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -22,12 +22,11 @@ const currentCustomIcon = new Icon({
 });
 
 type MapProps = {
-  activeOfferId: number;
+  activeOfferId: number | null;
 }
 
 function Map({activeOfferId}:MapProps): JSX.Element {
-  const city = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => getOffersByCity(state.offers, city));
+  const offers = useAppSelector(getOffersByCity);
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, DEFFAULT_OFFER as Offer);
 

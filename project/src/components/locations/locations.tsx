@@ -1,7 +1,8 @@
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {changeCity} from '../../store/action';
 import { CityName } from '../../types/offers';
+import { getCity } from '../../store/offers-data/selectors';
+import { changeCity } from '../../store/offers-data/offers-data';
 
 type ItemCity = {
   city: string;
@@ -35,7 +36,7 @@ function Locations():JSX.Element {
       active: false,
     },
   ];
-  const currentCity = useAppSelector((state) => state.city);
+  const currentCity = useAppSelector(getCity);
   const dispatch = useAppDispatch();
 
   return (
@@ -51,7 +52,7 @@ function Locations():JSX.Element {
                 dispatch(changeCity(item.city as CityName));
               }}
             >
-              {item.city}
+              <span>{item.city}</span>
             </a>
           </li>
         ))}
