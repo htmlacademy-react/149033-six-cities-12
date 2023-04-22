@@ -17,9 +17,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(isFavorite);
-  useEffect(() => {
-    dispatch(fetchFavoritesAction());
-  }, [dispatch]);
+
   const handleButtonClick = () => {
     if (isAuth) {
       dispatch(setFavoritesAction({
@@ -31,7 +29,6 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
       navigate(AppRoute.Login);
     }
   };
-
 
   return (
     <button
