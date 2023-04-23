@@ -4,7 +4,7 @@ import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import ReviewList from '../../components/review-list/review-list';
 import Stars from '../../components/stars/stars';
-import { capitalize} from '../../utils';
+import { capitalize} from '../../utils/utils';
 import { AuthorizationStatus, CLASS_CARD } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';

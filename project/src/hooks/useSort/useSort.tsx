@@ -1,6 +1,6 @@
 import { SORTS } from '../../const';
 import { Offer } from '../../types/offers';
-import { sortingOffersPriceDown, sortingOffersPriceUp, sortingOffersRatingDown } from '../../utils';
+import { sortingOffersPriceDown, sortingOffersPriceUp, sortingOffersRatingDown } from '../../utils/utils';
 
 export function useSort(offers: Offer[], sortingType: string | null) {
   const sortedOffers = [...offers];

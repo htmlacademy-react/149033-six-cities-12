@@ -1,4 +1,4 @@
-import { calcRating } from '../../utils';
+import { calcRating } from '../../utils/utils';
 type StarsProps = {
   rating: number;
 }

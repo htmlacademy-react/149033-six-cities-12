@@ -1,4 +1,4 @@
-import { Offer } from './types/offers';
+import { Offer } from '../types/offers';
 
 const WIDTH_STARS = 5;
 export const calcRating = (rating: number) => `${Math.round(rating) / WIDTH_STARS * 100}%`;
@@ -16,6 +16,3 @@ export function sortingOffersPriceDown(offer: Offer, offerNext: Offer) {
 export function sortingOffersRatingDown(offer: Offer, offerNext: Offer) {
   return offerNext.rating - offer.rating;
 }
-
-// export const getOffersByCity = (offers: Offer[], cityName: CityName): Offer[] =>
-//   offers.filter((offer) => offer.city.name === cityName);
