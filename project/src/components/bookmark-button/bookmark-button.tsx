@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFavoritesAction, setFavoritesAction } from '../../store/favorite-data/api-actions';
+import { setFavoritesAction } from '../../store/favorite-data/api-actions';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type BookmarkButtonProps = {
   offerId: number;
@@ -17,9 +17,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(isFavorite);
-  useEffect(() => {
-    dispatch(fetchFavoritesAction());
-  }, [dispatch]);
+
   const handleButtonClick = () => {
     if (isAuth) {
       dispatch(setFavoritesAction({
@@ -31,7 +29,6 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
       navigate(AppRoute.Login);
     }
   };
-
 
   return (
     <button
