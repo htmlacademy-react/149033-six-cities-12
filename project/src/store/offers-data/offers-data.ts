@@ -4,9 +4,9 @@ import { Offer} from '../../types/offers';
 import {SORTS, NameSpace} from '../../const';
 import { CityName } from '../../types/offers';
 
-const START_CITY = 'Paris';
+export const START_CITY = 'Paris';
 
-type OffersDataState = {
+export type OffersDataState = {
   city: CityName;
   offers: Offer[];
   selectedOfferId: number | null;
