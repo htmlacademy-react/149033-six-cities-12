@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 function Footer():JSX.Element {
   return (
     <footer className="footer container">
-      <Link className="footer__logo-link" to={AppRoute.Main}>
+      <Link className="footer__logo-link" to={AppRoute.Main} data-testid="footer-link">
         <img
           className="footer__logo"
           src="img/logo.svg"

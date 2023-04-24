@@ -39,11 +39,12 @@ function Card({offer, classCard}: CardProps): JSX.Element {
     <article className={`${name}__card place-card`}
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
       onMouseLeave={() => dispatch(selectOffer(null))}
+      data-testid="data-card"
     >
       <PremiumMark isPremium={isPremium} />
       <div className={`${name}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>
-          <img className="place-card__image" src={previewImage} width={width} height={height} alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width={width} height={height} alt={title}/>
         </Link>
       </div>
       <div className="place-card__info">
