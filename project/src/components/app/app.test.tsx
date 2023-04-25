@@ -75,7 +75,7 @@ describe('Application Routing', () => {
     expect(screen.getByTestId('main-page')).toBeInTheDocument();
   });
 
-  it('should render "PropertyPage" when user navigate to "/offer"', () => {
+  it('should render "offerPage" when user navigate to "/offer"', () => {
     history.push(generatePath(AppRoute.Room, { id: `${fakeOffer.id}` }));
     window.scrollTo = jest.fn();
 
@@ -106,7 +106,7 @@ describe('Application Routing', () => {
     history.push('/non-existent_address');
 
     render(fakeApp);
-    expect(screen.getByText('404. Page not found')).toBeInTheDocument();
-    expect(screen.getByText('Вернуться на главную')).toBeInTheDocument();
+    expect(screen.getByText('404 Not Found')).toBeInTheDocument();
+    expect(screen.getByText('Вернёмся на главную страницу!')).toBeInTheDocument();
   });
 });

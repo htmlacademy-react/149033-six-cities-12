@@ -15,11 +15,11 @@ const mockStore = configureMockStore([thunk]);
 const history = createMemoryHistory();
 
 const store = mockStore({
-  USER: {
+  [NameSpace.User]: {
     authorizationStatus: AuthorizationStatus.NoAuth,
     userData: null,
   },
-  FAVORITES: {
+  [NameSpace.Favorite]: {
     favorites: fakeOffers,
   }
 });

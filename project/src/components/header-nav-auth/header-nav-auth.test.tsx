@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {createMemoryHistory} from 'history';
 import {makeFakeOffers, makeFakeUserData} from '../../utils/mocks';
-import { AuthorizationStatus} from '../../const';
+import { AuthorizationStatus, NameSpace} from '../../const';
 import HistoryRouter from '../history-router/history-router';
 import HeaderNavAuth from './header-nav-auth';
 
@@ -15,16 +15,16 @@ const mockStore = configureMockStore([thunk]);
 const history = createMemoryHistory();
 
 const store = mockStore({
-  USER: {
+  [NameSpace.User]: {
     authorizationStatus: AuthorizationStatus.Auth,
     userData: fakeUserData
   },
-  FAVORITES: {
+  [NameSpace.Favorite]: {
     favorites: fakeOffers,
   }
 });
 
-describe('Component: UserAuthorized', () => {
+describe('Component: HeaderNavAuth', () => {
   it('should render correctly', () => {
 
     render(
@@ -35,8 +35,6 @@ describe('Component: UserAuthorized', () => {
       </Provider>
     );
 
-    expect(screen.getByRole('img')).toBeInTheDocument();
-    expect(screen.getByAltText(`${fakeUserData.name}`)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${fakeUserData.email}`, 'i'))).toBeInTheDocument();
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
   });

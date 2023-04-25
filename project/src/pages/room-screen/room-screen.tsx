@@ -21,8 +21,7 @@ import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { getSelectedOfferId } from '../../store/offers-data/selectors';
 
 function RoomScreen(): JSX.Element {
-  const {id} = useParams();
-  const offerId = Number(id);
+  const offerId = Number(useParams().id);
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Auth;
@@ -53,7 +52,7 @@ function RoomScreen(): JSX.Element {
       <Header>
         <HeaderNav />
       </Header>
-      <main className="page__main page__main--property" >
+      <main className="page__main page__main--property" data-testid="property-page">
         <section className="property">
           <OfferGallery offer={currentOffer}/>
           <div className="property__container container">
