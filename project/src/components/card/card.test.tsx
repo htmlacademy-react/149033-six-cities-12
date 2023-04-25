@@ -2,13 +2,13 @@ import { act, render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
-import userEvent from '@testing-library/user-event';
 import { Route, Routes } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { AuthorizationStatus, CLASS_CARD, NameSpace } from '../../const';
 import HistoryRouter from '../history-router/history-router';
 import Card from './card';
 import { makeFakeOffer, makeFakeUserData } from '../../utils/mocks';
+import userEvent from '@testing-library/user-event';
 
 const mockStore = configureMockStore([thunk]);
 const fakeOffer = makeFakeOffer();
