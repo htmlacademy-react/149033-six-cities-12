@@ -112,3 +112,7 @@ export enum City {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf'
 }
+
+export enum Setting {
+  CardsCount = 6,
+}

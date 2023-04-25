@@ -4,6 +4,7 @@ import {AppDispatch, State} from '../../types/state';
 import {Offer, OfferId} from '../../types/offers';
 import {APIRoute } from '../../const';
 import { Review, ReviewData } from '../../types/review';
+import { toast } from 'react-toastify';
 
 export const fetchOfferItemAction = createAsyncThunk<Offer, OfferId, {
   dispatch: AppDispatch;
@@ -64,6 +65,7 @@ export const sendReviewAction = createAsyncThunk<Review[], ReviewData, {
       const {data} = await api.post<Review[]>(`${APIRoute.Reviews}/${id}`, {rating, comment});
       return data;
     } catch (error) {
+      toast.warn('ошибка отправки отзыва');
       throw new Error();
     }
   }
