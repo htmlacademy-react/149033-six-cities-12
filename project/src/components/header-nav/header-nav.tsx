@@ -8,7 +8,7 @@ import HeaderNavNoAuth from '../header-nav-no-auth/header-nav-no-auth';
 function HeaderNav():JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   return (
-    <nav className="header__nav">
+    <nav className="header__nav" data-testid="header-navigation">
       {(authorizationStatus === AuthorizationStatus.Auth)
         ? <HeaderNavAuth />
         : <HeaderNavNoAuth />}

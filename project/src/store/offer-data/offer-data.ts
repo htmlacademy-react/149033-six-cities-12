@@ -4,7 +4,7 @@ import {NameSpace} from '../../const';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
 
-type OfferDataState = {
+export type OfferDataState = {
   isOfferDataLoading: boolean;
   offerItem: Offer | null;
   nearOffers: Offer[] | null;

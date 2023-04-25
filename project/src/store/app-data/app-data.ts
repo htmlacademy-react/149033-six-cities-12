@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 
-type AppDataState = {
+export type AppDataState = {
   error: string | null;
 };
 
@@ -9,7 +9,7 @@ const initialState: AppDataState = {
   error: null,
 };
 
-export const AppData = createSlice({
+export const appData = createSlice({
   name: NameSpace.App,
   initialState,
   reducers: {
@@ -19,4 +19,4 @@ export const AppData = createSlice({
   }
 });
 
-export const {changeError} = AppData.actions;
+export const {changeError} = appData.actions;

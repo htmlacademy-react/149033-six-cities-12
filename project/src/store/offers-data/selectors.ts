@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { NameSpace, SORTS } from '../../const';
 import { CityName, Offer } from '../../types/offers';
 import { State } from '../../types/state';
-import { sortingOffersPriceDown, sortingOffersPriceUp, sortingOffersRatingDown } from '../../utils';
+import { sortingOffersPriceDown, sortingOffersPriceUp, sortingOffersRatingDown } from '../../utils/utils';
 
 const compareOffers = {
   [SORTS.Popular]: () => 0,

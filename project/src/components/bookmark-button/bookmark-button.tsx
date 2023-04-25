@@ -22,7 +22,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
     if (isAuth) {
       dispatch(setFavoritesAction({
         id: offerId,
-        status: Number(!isActive)
+        status: Number(!isFavorite)
       }));
       setIsActive( (option) => !option);
     } else {
@@ -40,6 +40,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
       }, 'button')}
       type="button"
       onClick={handleButtonClick}
+      data-testid="data-bookmark"
     >
       <svg
         className="place-card__bookmark-icon"

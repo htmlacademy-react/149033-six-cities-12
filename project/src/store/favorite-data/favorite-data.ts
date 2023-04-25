@@ -3,7 +3,7 @@ import { NameSpace } from '../../const';
 import { fetchFavoritesAction, setFavoritesAction } from './api-actions';
 import { Offer } from '../../types/offers';
 
-type FavoritesData = {
+export type FavoritesData = {
   favorites: Offer[];
   setStatus: boolean | null;
 };
@@ -13,7 +13,7 @@ const initialState: FavoritesData = {
   setStatus: null,
 };
 
-export const FavoriteData = createSlice({
+export const favoriteData = createSlice({
   name: NameSpace.Favorite,
   initialState,
   reducers: {},
