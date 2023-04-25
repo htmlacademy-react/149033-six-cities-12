@@ -21,7 +21,8 @@ import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { getSelectedOfferId } from '../../store/offers-data/selectors';
 
 function RoomScreen(): JSX.Element {
-  const offerId = Number(useParams().id);
+  const {id} = useParams();
+  const offerId = Number(id);
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Auth;

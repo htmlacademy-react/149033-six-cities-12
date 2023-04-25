@@ -76,7 +76,7 @@ describe('Application Routing', () => {
   });
 
   it('should render "offerPage" when user navigate to "/offer"', () => {
-    history.push(generatePath(AppRoute.Room, { id: `${fakeOffer.id}` }));
+    history.push(generatePath(`${AppRoute.Room}:id`, { id: `${fakeOffer.id}` }));
     window.scrollTo = jest.fn();
 
     render(fakeApp);

@@ -38,7 +38,7 @@ function App() {
         }
       />
       <Route
-        path={`${AppRoute.Room}`}
+        path={`${AppRoute.Room}:id`}
         element={
           <RoomScreen />
         }
