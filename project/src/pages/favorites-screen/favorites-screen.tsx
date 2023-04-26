@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, CLASS_CARD } from '../../const';
+import { AppRoute, ClassCard } from '../../const';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import Card from '../../components/card/card';
@@ -56,7 +56,7 @@ function FavoritesScreen(): JSX.Element {
                         <Card
                           key={itemOffer.id}
                           offer={itemOffer}
-                          classCard={CLASS_CARD.FAVORITES}
+                          classCard={ClassCard.FAVORITES}
                         />
                       ))}
                     </div>

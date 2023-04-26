@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { CityName } from '../../types/offers';
 import { getCity } from '../../store/offers-data/selectors';
 import { changeCity } from '../../store/offers-data/offers-data';
-import { listCity } from '../../const';
+import { ListCity } from '../../const';
 
 function Locations():JSX.Element {
   const currentCity = useAppSelector(getCity);
@@ -12,7 +12,7 @@ function Locations():JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list" >
-        {listCity.map((item) => (
+        {ListCity.map((item) => (
           <li key={item} className='locations__item'>
             <a
               className={cn('locations__item-link tabs__item', {'tabs__item--active': item === currentCity} )}

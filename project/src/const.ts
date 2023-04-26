@@ -19,7 +19,7 @@ export const RATING_STARS = [
   'good',
   'perfect'] as const;
 
-export const CLASS_CARD = {
+export const ClassCard = {
   CITY: {
     name: 'cities',
     width: 260,
@@ -117,7 +117,7 @@ export enum Setting {
   CardsCount = 6,
 }
 
-export const listCity = [
+export const ListCity = [
   'Paris',
   'Cologne',
   'Brussels',

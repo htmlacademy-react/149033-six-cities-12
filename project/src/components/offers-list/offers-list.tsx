@@ -1,6 +1,6 @@
 import Card from '../card/card';
 import { Offer } from '../../types/offers';
-import { CLASS_CARD, Setting } from '../../const';
+import { ClassCard, Setting } from '../../const';
 
 type OfferlistProps = {
   offers: Offer[];
@@ -13,7 +13,7 @@ function Offerlist({offers}:OfferlistProps): JSX.Element {
         <Card
           key={offer.id}
           offer={offer}
-          classCard={CLASS_CARD.CITY}
+          classCard={ClassCard.CITY}
         />
       )) }
     </div>

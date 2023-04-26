@@ -5,7 +5,7 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import ReviewList from '../../components/review-list/review-list';
 import Stars from '../../components/stars/stars';
 import { capitalize} from '../../utils/utils';
-import { AuthorizationStatus, CLASS_CARD } from '../../const';
+import { AuthorizationStatus, ClassCard } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
 import { useEffect } from 'react';
@@ -136,7 +136,7 @@ function RoomScreen(): JSX.Element {
                 <Card
                   key={item.id}
                   offer={item}
-                  classCard={CLASS_CARD.CITY}
+                  classCard={ClassCard.CITY}
                 />
               ))}
             </div>
