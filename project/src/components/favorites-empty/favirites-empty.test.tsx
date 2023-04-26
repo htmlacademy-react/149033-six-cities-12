@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import FavoriteEmpty from './favorites-empty';
+import FavoritesEmpty from './favorites-empty';
 
 describe('Component: LoadingScreen', () => {
   it('should render correctly', () => {
-    render(<FavoriteEmpty />);
+    render(<FavoritesEmpty />);
     expect(screen.getByText('Nothing yet saved.')).toBeInTheDocument();
   });
 });

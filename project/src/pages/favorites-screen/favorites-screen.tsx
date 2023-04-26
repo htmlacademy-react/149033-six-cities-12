@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoritesAction } from '../../store/favorite-data/api-actions';
 import { useEffect } from 'react';
 import { getFavorites } from '../../store/favorite-data/selector';
-import FavoriteEmpty from '../../components/favorites-empty/favorites-empty';
+import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { CityName, Offer } from '../../types/offers';
 
@@ -65,7 +65,7 @@ function FavoritesScreen(): JSX.Element {
               </ul>
             </section>
             :
-            <FavoriteEmpty /> }
+            <FavoritesEmpty /> }
         </div>
       </main>
       <Footer />
