@@ -83,10 +83,10 @@ function RoomScreen(): JSX.Element {
                   {capitalize(type)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {bedrooms} Bedroom{bedrooms > 1 ? 's' : ''}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  Max {maxAdults} adult{maxAdults > 1 ? 's' : ''}
                 </li>
               </ul>
               <div className="property__price">
