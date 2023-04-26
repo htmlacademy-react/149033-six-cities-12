@@ -1,4 +1,3 @@
-import React from 'react';
 import {Link} from 'react-router-dom';
 import Icon404 from '../../components/icon/icon404';
 import styles from './page-404.module.scss';
