@@ -12,12 +12,12 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const RATING_STARS: string[] = [
+export const RATING_STARS = [
   'terribly',
   'badly',
   'not bad',
   'good',
-  'perfect'];
+  'perfect'] as const;
 
 export const CLASS_CARD = {
   CITY: {
@@ -30,7 +30,7 @@ export const CLASS_CARD = {
     width: 150,
     height: 110
   },
-};
+} as const;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
@@ -116,3 +116,12 @@ export enum City {
 export enum Setting {
   CardsCount = 6,
 }
+
+export const listCity = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+] as const;
