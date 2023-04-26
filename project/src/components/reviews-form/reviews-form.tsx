@@ -49,7 +49,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingForm ratingStars={RATING_STARS} handleInputChange={handleInputChange} rating={rating}/>
+        <RatingForm handleInputChange={handleInputChange} rating={rating}/>
       </div>
       <textarea
         className="reviews__textarea form__textarea"

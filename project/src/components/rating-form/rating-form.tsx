@@ -1,14 +1,14 @@
 import React from 'react';
+import { RATING_STARS } from '../../const';
 
 type RatingStarsProps = {
-  ratingStars: string[];
   handleInputChange:(evt: React.ChangeEvent<HTMLInputElement>) => void;
   rating: string | null;
 }
-function RatingForm({ratingStars, handleInputChange, rating}: RatingStarsProps):JSX.Element {
-  const getFormRating = (currentRatingStars: string[]) => {
+function RatingForm({ handleInputChange, rating}: RatingStarsProps):JSX.Element {
+  const getFormRating = () => {
     const content = [];
-    for (let i = currentRatingStars.length; i > 0; i--) {
+    for (let i = RATING_STARS.length - 1; i > 0; i--) {
       content.push(
         <React.Fragment key={i}>
           <input
@@ -23,7 +23,7 @@ function RatingForm({ratingStars, handleInputChange, rating}: RatingStarsProps):
           <label
             htmlFor={`${i}-stars`}
             className="reviews__rating-label form__rating-label"
-            title={currentRatingStars[i]}
+            title={RATING_STARS[i]}
           >
             <svg className="form__star-image" width={37} height={33}>
               <use xlinkHref="#icon-star" />
@@ -37,7 +37,7 @@ function RatingForm({ratingStars, handleInputChange, rating}: RatingStarsProps):
 
   return (
     <React.Fragment>
-      {getFormRating(ratingStars)}
+      {getFormRating()}
     </React.Fragment>
   );}
 
