@@ -68,7 +68,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={comment.length < LIMIT_CARACTERS || !isLoading }
+          disabled={!rating || comment.length < LIMIT_CARACTERS || !isLoading }
         >
           {isLoading ? 'Submit' : 'Sending...'}
         </button>
