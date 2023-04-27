@@ -1,4 +1,5 @@
 import { Review } from '../../types/review';
+import { sortReviews } from '../../utils/utils';
 import ReviewItem from '../review-item/review-item';
 const LIMIT_REVIEWS = 10;
 type ReviewListProps = {
@@ -13,7 +14,7 @@ function ReviewList({reviews, children}: ReviewListProps): JSX.Element {
         Reviews · <span className="reviews__amount">{reviews?.length}</span>
       </h2>
       <ul className="reviews__list">
-        {reviews && reviews.slice(0,LIMIT_REVIEWS).map((review) => (
+        {reviews && sortReviews(reviews).slice(0,LIMIT_REVIEWS).map((review) => (
           <ReviewItem key={review.id} review={review} />
         ))}
       </ul>
