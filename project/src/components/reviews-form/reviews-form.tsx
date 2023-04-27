@@ -1,6 +1,5 @@
 import React, { FormEvent } from 'react';
 import { useState } from 'react';
-import { RATING_STARS } from '../../const';
 import RatingForm from '../rating-form/rating-form';
 import { OfferId } from '../../types/offers';
 import { useAppDispatch } from '../../hooks';
