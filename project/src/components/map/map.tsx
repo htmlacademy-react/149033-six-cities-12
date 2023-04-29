@@ -7,7 +7,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { getOffersByCity } from '../../store/offers-data/selectors';
+import { getOffersByCity} from '../../store/offers-data/selectors';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -23,15 +23,19 @@ const currentCustomIcon = new Icon({
 
 type MapProps = {
   activeOfferId: number | null;
+  nearOffers?: Offer[] | null ;
 }
 
-function Map({activeOfferId}:MapProps): JSX.Element {
-  const offers = useAppSelector(getOffersByCity);
+function Map({nearOffers, activeOfferId}:MapProps): JSX.Element {
+  const offersCurrent = useAppSelector(getOffersByCity);
+  const offers = nearOffers ? nearOffers : offersCurrent;
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, DEFFAULT_OFFER as Offer);
-
   const { pathname } = useLocation();
-
+  let activeId = activeOfferId;
+  if(nearOffers) {
+    activeId = nearOffers[0].id;
+  }
   useEffect(() => {
     if (map) {
       const mapCity = offers.length
@@ -49,7 +53,7 @@ function Map({activeOfferId}:MapProps): JSX.Element {
   }, [map, offers]);
 
   useEffect(() => {
-    if (map) {
+    if (map && offers.length) {
       const markerGroup = leaflet.layerGroup().addTo(map);
 
       offers.forEach((offer: Offer) => {
@@ -60,7 +64,7 @@ function Map({activeOfferId}:MapProps): JSX.Element {
               lng: offer.location.longitude
             },
             {
-              icon: (activeOfferId && offer.id === activeOfferId)
+              icon: (activeId && offer.id === activeId)
                 ? currentCustomIcon
                 : defaultCustomIcon
             }
@@ -72,7 +76,7 @@ function Map({activeOfferId}:MapProps): JSX.Element {
         markerGroup.clearLayers();
       };
     }
-  }, [map, offers, activeOfferId]);
+  }, [map, offers, activeId]);
 
   return (
     <section className={`${pathname === '/' ? 'cities__map' : 'property__map'} map`} ref={mapRef}></section>

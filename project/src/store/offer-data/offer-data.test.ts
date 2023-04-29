@@ -13,7 +13,7 @@ describe('reducer: offerData', () => {
     state = {
       isOfferDataLoading: false,
       offerItem: null,
-      nearOffers: null,
+      nearOffers: [],
       reviews: null,
     };
   });

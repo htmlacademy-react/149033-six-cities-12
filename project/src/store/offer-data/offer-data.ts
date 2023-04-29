@@ -7,7 +7,7 @@ import { Review } from '../../types/review';
 export type OfferDataState = {
   isOfferDataLoading: boolean;
   offerItem: Offer | null;
-  nearOffers: Offer[] | null;
+  nearOffers: Offer[] ;
   reviews: Review[] | null;
 };
 
@@ -15,7 +15,7 @@ export type OfferDataState = {
 const initialState: OfferDataState = {
   isOfferDataLoading: false,
   offerItem: null,
-  nearOffers: null,
+  nearOffers: [],
   reviews: null,
 };
 

@@ -123,7 +123,7 @@ function RoomScreen(): JSX.Element {
             </div>
           </div>
 
-          <Map activeOfferId={selectedOfferId}/>
+          <Map nearOffers={[currentOffer, ...nearOffers]} activeOfferId={selectedOfferId}/>
 
         </section>
         <div className="container">
