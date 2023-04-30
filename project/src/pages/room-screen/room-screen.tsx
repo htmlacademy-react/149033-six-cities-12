@@ -19,6 +19,7 @@ import { getIsOfferDataLoading, getNearOffers, getOfferItem, getReviews } from '
 import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/offer-data/api-actions';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { getSelectedOfferId } from '../../store/offers-data/selectors';
+import Page404 from '../page-404/page-404';
 
 function RoomScreen(): JSX.Element {
   const {id} = useParams();
@@ -44,8 +45,11 @@ function RoomScreen(): JSX.Element {
 
   const reviews = useAppSelector(getReviews);
 
-  if (!currentOffer || isOffersDataLoading) {
+  if (isOffersDataLoading) {
     return <Loader />;
+  }
+  if (!currentOffer ) {
+    return <Page404 />;
   }
   const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
   return (
