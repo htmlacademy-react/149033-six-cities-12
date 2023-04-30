@@ -12,6 +12,7 @@ export type OffersDataState = {
   selectedOfferId: number | null;
   isOffersDataLoading: boolean;
   sortType: SORTS;
+  isServerError: boolean;
 };
 
 const initialState: OffersDataState = {
@@ -20,6 +21,7 @@ const initialState: OffersDataState = {
   selectedOfferId: null,
   isOffersDataLoading: false,
   sortType: SORTS.Popular,
+  isServerError: false,
 };
 
 export const offersData = createSlice({
@@ -43,10 +45,12 @@ export const offersData = createSlice({
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.isOffersDataLoading = false;
+        state.isServerError = true;
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.isOffersDataLoading = false;
         state.offers = action.payload;
+        state.isServerError = false;
       });
   }
 });

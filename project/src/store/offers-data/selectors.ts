@@ -14,6 +14,7 @@ const compareOffers = {
 const getOffers = (state: State) => state[NameSpace.Offers].offers;
 const getCity = (state: State) => state[NameSpace.Offers].city;
 const getIsOffersDataLoading = (state: State) => state[NameSpace.Offers].isOffersDataLoading;
+const getServerErrorStatus = (state: State): boolean => state[NameSpace.Offers].isServerError;
 const getSort = (state: State): SORTS => state[NameSpace.Offers].sortType;
 
 const getOffersByCity = (state: State): Offer[] => state[NameSpace.Offers].offers.filter((offer) => offer.city.name === state[NameSpace.Offers].city);
@@ -25,6 +26,6 @@ const getOffersData = createSelector(
   (city, sort, offers) => offers.filter((offer) => offer.city.name === city).sort(compareOffers[sort])
 );
 
-export { getOffers, getCity, getIsOffersDataLoading, getSort, getOffersByCity, getListCity, getSelectedOfferId, getOffersData };
+export { getOffers, getCity, getIsOffersDataLoading, getServerErrorStatus, getSort, getOffersByCity, getListCity, getSelectedOfferId, getOffersData };
 
 

@@ -11,16 +11,24 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useEffect } from 'react';
 import { checkAuthAction } from '../../store/user-process/api-actions';
 import Loader from '../loader/loader';
-import { getIsOffersDataLoading } from '../../store/offers-data/selectors';
+import { getIsOffersDataLoading, getServerErrorStatus } from '../../store/offers-data/selectors';
+import ErrorScreen from '../../pages/error-screen/error-screen';
 
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isDataLoaded = useAppSelector(getIsOffersDataLoading);
+  const isServerError = useAppSelector(getServerErrorStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(checkAuthAction());
   }, [dispatch]);
+
+  if (isServerError) {
+    return (
+      <ErrorScreen />
+    );
+  }
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoaded) {
     return (
