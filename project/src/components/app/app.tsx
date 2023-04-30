@@ -10,15 +10,23 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useEffect } from 'react';
 import { checkAuthAction } from '../../store/user-process/api-actions';
+import Loader from '../loader/loader';
+import { getIsOffersDataLoading } from '../../store/offers-data/selectors';
 
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isDataLoaded = useAppSelector(getIsOffersDataLoading);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(checkAuthAction());
   }, [dispatch]);
 
+  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoaded) {
+    return (
+      <Loader />
+    );
+  }
   return (
     <Routes>
       <Route
@@ -32,7 +40,7 @@ function App() {
       <Route
         path={AppRoute.Favorites}
         element={
-          <PrivateRoute>
+          <PrivateRoute authorizationStatus={authorizationStatus}>
             <FavoritesScreen />
           </PrivateRoute>
         }
