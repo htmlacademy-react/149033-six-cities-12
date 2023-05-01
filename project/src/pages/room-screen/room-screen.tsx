@@ -5,7 +5,7 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import ReviewList from '../../components/review-list/review-list';
 import Stars from '../../components/stars/stars';
 import { capitalize} from '../../utils/utils';
-import { AuthorizationStatus, CLASS_CARD } from '../../const';
+import { AuthorizationStatus, ClassCard } from '../../const';
 import OfferGoods from '../../components/offer-goods/offer-goods';
 import Map from '../../components/map/map';
 import { useEffect } from 'react';
@@ -19,6 +19,7 @@ import { getIsOfferDataLoading, getNearOffers, getOfferItem, getReviews } from '
 import { fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction } from '../../store/offer-data/api-actions';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { getSelectedOfferId } from '../../store/offers-data/selectors';
+import Page404 from '../page-404/page-404';
 
 function RoomScreen(): JSX.Element {
   const {id} = useParams();
@@ -44,8 +45,11 @@ function RoomScreen(): JSX.Element {
 
   const reviews = useAppSelector(getReviews);
 
-  if (!currentOffer || isOffersDataLoading) {
+  if (isOffersDataLoading) {
     return <Loader />;
+  }
+  if (!currentOffer ) {
+    return <Page404 />;
   }
   const {isPremium, title, rating, type, bedrooms, maxAdults, price, host, description, goods} = currentOffer;
   return (
@@ -83,10 +87,10 @@ function RoomScreen(): JSX.Element {
                   {capitalize(type)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {bedrooms} Bedroom{bedrooms > 1 ? 's' : ''}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  Max {maxAdults} adult{maxAdults > 1 ? 's' : ''}
                 </li>
               </ul>
               <div className="property__price">
@@ -123,7 +127,7 @@ function RoomScreen(): JSX.Element {
             </div>
           </div>
 
-          <Map activeOfferId={selectedOfferId}/>
+          <Map nearOffers={[currentOffer, ...nearOffers]} activeOfferId={selectedOfferId}/>
 
         </section>
         <div className="container">
@@ -136,7 +140,7 @@ function RoomScreen(): JSX.Element {
                 <Card
                   key={item.id}
                   offer={item}
-                  classCard={CLASS_CARD.CITY}
+                  classCard={ClassCard.CITY}
                 />
               ))}
             </div>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-function HeaderNavNoAth():JSX.Element {
+function HeaderNavNoAuth():JSX.Element {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -16,4 +16,4 @@ function HeaderNavNoAth():JSX.Element {
     </nav>
   );
 }
-export default HeaderNavNoAth;
+export default HeaderNavNoAuth;

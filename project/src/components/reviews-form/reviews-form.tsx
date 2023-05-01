@@ -1,6 +1,5 @@
 import React, { FormEvent } from 'react';
 import { useState } from 'react';
-import { RATING_STARS } from '../../const';
 import RatingForm from '../rating-form/rating-form';
 import { OfferId } from '../../types/offers';
 import { useAppDispatch } from '../../hooks';
@@ -49,7 +48,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingForm ratingStars={RATING_STARS} handleInputChange={handleInputChange} rating={rating}/>
+        <RatingForm handleInputChange={handleInputChange} rating={rating}/>
       </div>
       <textarea
         className="reviews__textarea form__textarea"
@@ -69,7 +68,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={comment.length < LIMIT_CARACTERS || !isLoading }
+          disabled={!rating || comment.length < LIMIT_CARACTERS || !isLoading }
         >
           {isLoading ? 'Submit' : 'Sending...'}
         </button>

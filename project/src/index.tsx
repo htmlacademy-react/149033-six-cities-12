@@ -7,7 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HistoryRouter from './components/history-router/history-router';
 import browserHistory from './browser-history';
-
+import { fetchOffersAction } from './store/offers-data/api-actions';
+store.dispatch(fetchOffersAction());
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );

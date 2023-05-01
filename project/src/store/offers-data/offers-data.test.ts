@@ -15,6 +15,7 @@ describe('reducer: offerData', () => {
       selectedOfferId: null,
       isOffersDataLoading: false,
       sortType: SORTS.Popular,
+      isServerError: false,
     };
   });
 
@@ -36,7 +37,7 @@ describe('reducer: offerData', () => {
     it('should update the offersStatus to isOffersDataLoading: true if fetchOffersAction.rejected', () => {
       expect(
         offersData.reducer(state, { type: fetchOffersAction.rejected.type })
-      ).toEqual({ ...state, isOffersDataLoading: false });
+      ).toEqual({ ...state, isOffersDataLoading: false, isServerError: true });
     });
 
     it('should update the status to isOffersDataLoading: false and loaded offers if fetchOffersAction.fulfilled', () => {
@@ -49,6 +50,7 @@ describe('reducer: offerData', () => {
         ...state,
         isOffersDataLoading: false,
         offers: fakeOffers,
+        isServerError: false,
       });
     });
   });

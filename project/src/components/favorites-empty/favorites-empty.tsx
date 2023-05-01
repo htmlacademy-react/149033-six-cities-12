@@ -1,5 +1,5 @@
 
-export default function FavoriteEmpty() {
+export default function FavoritesEmpty() {
   return (
     <section className="favorites favorites--empty">
       <h1 className="visually-hidden">Favorites (empty)</h1>

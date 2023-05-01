@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, CLASS_CARD } from '../../const';
+import { AppRoute, ClassCard } from '../../const';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import Card from '../../components/card/card';
@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoritesAction } from '../../store/favorite-data/api-actions';
 import { useEffect } from 'react';
 import { getFavorites } from '../../store/favorite-data/selector';
-import FavoriteEmpty from '../../components/favorites-empty/favorites-empty';
+import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { CityName, Offer } from '../../types/offers';
 
@@ -56,7 +56,7 @@ function FavoritesScreen(): JSX.Element {
                         <Card
                           key={itemOffer.id}
                           offer={itemOffer}
-                          classCard={CLASS_CARD.FAVORITES}
+                          classCard={ClassCard.FAVORITES}
                         />
                       ))}
                     </div>
@@ -65,7 +65,7 @@ function FavoritesScreen(): JSX.Element {
               </ul>
             </section>
             :
-            <FavoriteEmpty /> }
+            <FavoritesEmpty /> }
         </div>
       </main>
       <Footer />

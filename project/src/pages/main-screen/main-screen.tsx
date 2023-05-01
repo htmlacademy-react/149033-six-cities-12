@@ -3,27 +3,17 @@ import Offerlist from '../../components/offers-list/offers-list';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import Map from '../../components/map/map';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
 import Loader from '../../components/loader/loader';
 import HeaderNav from '../../components/header-nav/header-nav';
-import { getCity, getIsOffersDataLoading, getOffersByCity, getOffersData, getSelectedOfferId } from '../../store/offers-data/selectors';
-import { fetchOffersAction } from '../../store/offers-data/api-actions';
+import { getCity, getIsOffersDataLoading, getOffersData, getSelectedOfferId } from '../../store/offers-data/selectors';
 import MainEmpty from '../../components/main-empty/main-empty';
 
 function MainScreen(): JSX.Element {
   const city = useAppSelector(getCity);
   const selectedOfferId = useAppSelector(getSelectedOfferId);
   const isOffersDataLoading = useAppSelector(getIsOffersDataLoading);
-  const offersByCity = useAppSelector(getOffersByCity);
   const offers = useAppSelector(getOffersData);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (!offers.length) {
-      dispatch(fetchOffersAction());
-    }
-  }, [dispatch, offers]);
 
   if (isOffersDataLoading) {
     return <Loader />;
@@ -44,7 +34,7 @@ function MainScreen(): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersByCity.length}&nbsp;places to stay in {city}</b>
+                <b className="places__found">{offers.length}&nbsp;places to stay in {city}</b>
                 <Sort />
                 <Offerlist offers={offers} />
               </section>
