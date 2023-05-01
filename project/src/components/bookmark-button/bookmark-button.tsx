@@ -29,7 +29,6 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
       navigate(AppRoute.Login);
     }
   };
-
   return (
     <button
       className={cn({
@@ -43,7 +42,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
       data-testid="data-bookmark"
     >
       <svg
-        className="place-card__bookmark-icon"
+        className={isBigSize ? 'property__bookmark-icon' : 'place-card__bookmark-icon'}
         width={isBigSize ? '31' : '18'}
         height={isBigSize ? '33' : '19'}
       >
