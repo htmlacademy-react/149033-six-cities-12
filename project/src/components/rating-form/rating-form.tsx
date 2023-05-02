@@ -8,7 +8,7 @@ type RatingStarsProps = {
 function RatingForm({ handleInputChange, rating}: RatingStarsProps):JSX.Element {
   const getFormRating = () => {
     const content = [];
-    for (let i = RATING_STARS.length - 1; i > 0; i--) {
+    for (let i = RATING_STARS.length; i > 0; i--) {
       content.push(
         <React.Fragment key={i}>
           <input
@@ -23,7 +23,7 @@ function RatingForm({ handleInputChange, rating}: RatingStarsProps):JSX.Element 
           <label
             htmlFor={`${i}-stars`}
             className="reviews__rating-label form__rating-label"
-            title={RATING_STARS[i]}
+            title={RATING_STARS[i + 1]}
           >
             <svg className="form__star-image" width={37} height={33}>
               <use xlinkHref="#icon-star" />
