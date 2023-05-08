@@ -3,6 +3,7 @@ import {fetchOfferItemAction, fetchNearOffersAction, fetchReviewAction, sendRevi
 import {NameSpace} from '../../const';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/review';
+import { setFavoritesAction } from '../favorite-data/api-actions';
 
 export type OfferDataState = {
   isOfferDataLoading: boolean;
@@ -43,6 +44,17 @@ export const offerData = createSlice({
       })
       .addCase(sendReviewAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
+      })
+      .addCase(setFavoritesAction.fulfilled, (state, action) => {
+        state.nearOffers.forEach((offer) => {
+          if (offer.id === action.payload.id) {
+            offer.isFavorite = action.payload.isFavorite;
+          }
+        });
+
+        if (state.offerItem?.id === action.payload.id) {
+          state.offerItem.isFavorite = action.payload.isFavorite;
+        }
       });
   }
 });
