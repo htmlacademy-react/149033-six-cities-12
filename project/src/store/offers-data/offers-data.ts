@@ -3,6 +3,7 @@ import {fetchOffersAction} from './api-actions';
 import { Offer} from '../../types/offers';
 import {SORTS, NameSpace} from '../../const';
 import { CityName } from '../../types/offers';
+import { setFavoritesAction } from '../favorite-data/api-actions';
 
 export const START_CITY = 'Paris';
 
@@ -51,6 +52,10 @@ export const offersData = createSlice({
         state.isOffersDataLoading = false;
         state.offers = action.payload;
         state.isServerError = false;
+      })
+      .addCase(setFavoritesAction.fulfilled, (state, action) => {
+        const currentIndex = state.offers.findIndex((offer) => offer.id === action.payload.id);
+        state.offers[currentIndex].isFavorite = !state.offers[currentIndex].isFavorite;
       });
   }
 });
