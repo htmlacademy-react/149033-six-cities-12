@@ -7,7 +7,7 @@ type PropertyReviewsProps = {
 
 function PropertyReviews({reviews}: PropertyReviewsProps): JSX.Element {
   return (
-    <section className="property__reviews reviews">
+    <section className="property__reviews reviews" data-testid="reviews">
       <h2 className="reviews__title">
         Reviews · <span className="reviews__amount">{reviews.length}</span>
       </h2>
@@ -42,7 +42,6 @@ function PropertyReviews({reviews}: PropertyReviewsProps): JSX.Element {
           </li>
         ))}
       </ul>
-      {/* <ReviewsForm /> */}
     </section>
   );
 }

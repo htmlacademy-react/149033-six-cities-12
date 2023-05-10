@@ -54,7 +54,7 @@ function LoginForm(): JSX.Element {
     <section className="login">
       <h1 className="login__title">Sign in</h1>
 
-      <form onSubmit={handleFormSubmit} className="login__form form" action="#" method="post">
+      <form onSubmit={handleFormSubmit} className="login__form form" action="#" method="post" data-testid="login-form">
         <div className="login__input-wrapper form__input-wrapper">
           <label className="visually-hidden">E-mail</label>
           <input

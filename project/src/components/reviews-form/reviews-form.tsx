@@ -57,6 +57,7 @@ function ReviewsForm({offerId}: ReviewsFormProps):JSX.Element {
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleTextAreaChange}
         value={comment}
+        data-testid="review"
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

@@ -36,7 +36,7 @@ export default function BookmarkButton({offerId, isFavorite, isBigSize}: Bookmar
       }, 'button')}
       type="button"
       onClick={handleButtonClick}
-      data-testid="data-bookmark"
+      data-testid="to-bookmarks"
     >
       <svg
         className={isBigSize ? 'property__bookmark-icon' : 'place-card__bookmark-icon'}

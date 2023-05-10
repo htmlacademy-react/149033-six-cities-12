@@ -11,12 +11,13 @@ function Sort():JSX.Element {
   const sortType = useAppSelector(getSort);
   const dispatch = useAppDispatch();
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#" method="get" data-testid="sort-form">
       <span className="places__sorting-caption">Sort by</span>
       <span
         className="places__sorting-type"
         tabIndex={0}
         onClick = {() => setIsShowSort((option) => !option)}
+        data-testid="toggle"
       >
         {sortType}
         <svg className="places__sorting-arrow" width="7" height="4">
@@ -30,7 +31,7 @@ function Sort():JSX.Element {
         }}
       >
         {Object.entries(SORTS).map( ([key, label]) => (
-          <li key={key} className={cn('places__option', {'places__option--active': sortType === label})} tabIndex={0} onClick={() => dispatch(changeSort(label))}>{label}</li>
+          <li key={key} className={cn('places__option', {'places__option--active': sortType === label})} tabIndex={0} onClick={() => dispatch(changeSort(label))} data-testid="sort-item">{label}</li>
         )
         )}
       </ul>}
