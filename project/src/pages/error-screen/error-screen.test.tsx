@@ -4,7 +4,7 @@ import HistoryRouter from '../../components/history-router/history-router';
 import ErrorScreen from './error-screen';
 
 
-describe('Component: NotFound', () => {
+describe('Component: ErrorScreen', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
 
