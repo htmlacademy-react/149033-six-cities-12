@@ -51,10 +51,10 @@ function LoginForm(): JSX.Element {
   };
 
   return (
-    <section className="login">
+    <section className="login" data-testid="login-form">
       <h1 className="login__title">Sign in</h1>
 
-      <form onSubmit={handleFormSubmit} className="login__form form" action="#" method="post">
+      <form onSubmit={handleFormSubmit} className="login__form form" action="#" method="post" data-testid="form-submit">
         <div className="login__input-wrapper form__input-wrapper">
           <label className="visually-hidden">E-mail</label>
           <input
@@ -66,6 +66,7 @@ function LoginForm(): JSX.Element {
             placeholder="Email"
             title="Email, напрмер test@test.com"
             required
+            data-testid="email"
           />
         </div>
         <div className="login__input-wrapper form__input-wrapper">
@@ -80,10 +81,11 @@ function LoginForm(): JSX.Element {
             placeholder="Password"
             title="Пароль должен содержать не менее одной цифры и буквы"
             required
+            data-testid="password"
           />
         </div>
 
-        <button className="login__submit form__submit button" type="submit" disabled={isDisabledBtn}>
+        <button className="login__submit form__submit button" type="submit" disabled={isDisabledBtn} data-testid="login-submit">
           Sign in
         </button>
       </form>

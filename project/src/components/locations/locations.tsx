@@ -10,7 +10,7 @@ function Locations():JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
-    <section className="locations container">
+    <section className="locations container" data-testid="location">
       <ul className="locations__list tabs__list" >
         {ListCity.map((item) => (
           <li key={item} className='locations__item'>

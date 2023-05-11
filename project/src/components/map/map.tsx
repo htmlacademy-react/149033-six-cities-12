@@ -79,7 +79,7 @@ function Map({nearOffers, activeOfferId}:MapProps): JSX.Element {
   }, [map, offers, activeId]);
 
   return (
-    <section className={`${pathname === '/' ? 'cities__map' : 'property__map'} map`} ref={mapRef}></section>
+    <section className={`${pathname === '/' ? 'cities__map' : 'property__map'} map`} ref={mapRef} data-testid="map"></section>
   );
 }
 export default Map;

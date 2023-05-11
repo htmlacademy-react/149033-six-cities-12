@@ -9,7 +9,7 @@ type ReviewListProps = {
 
 function ReviewList({reviews, children}: ReviewListProps): JSX.Element {
   return (
-    <section className="property__reviews reviews">
+    <section className="property__reviews reviews" data-testid="review-list">
       <h2 className="reviews__title">
         Reviews · <span className="reviews__amount">{reviews?.length}</span>
       </h2>

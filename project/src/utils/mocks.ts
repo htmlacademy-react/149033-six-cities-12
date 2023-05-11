@@ -77,3 +77,5 @@ export const makeFakeReview = (): Review => ({
 export const makeFakeReviews = (): Review[] =>
   Array.from({ length: 5 }, makeFakeReview);
 
+export const makeFakeId = datatype.number();
+

@@ -39,7 +39,7 @@ function Card({offer, classCard}: CardProps): JSX.Element {
     <article className={`${name}__card place-card`}
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
       onMouseLeave={() => dispatch(selectOffer(null))}
-      data-testid="data-card"
+      data-testid="card-article"
     >
       <PremiumMark isPremium={isPremium} />
       <div className={`${name}__image-wrapper place-card__image-wrapper`}>
